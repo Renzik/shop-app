@@ -2,16 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
-const ProductsOverview = () => {
+import ItemList from '../../components/ItemList';
+
+const ProductsOverview = ({ navigation }) => {
   const products = useSelector(state => state.products.availableProducts);
 
-  return (
-    <FlatList
-      renderItem={item => <Text>{item.item.title}</Text>}
-      data={products}
-      keyExtractor={item => item.id}
-    />
-  );
+  return <ItemList itemData={products} navigation={navigation} />;
+};
+
+ProductsOverview.navigationOptions = {
+  headerTitle: 'All Products',
 };
 
 const styles = StyleSheet.create({});

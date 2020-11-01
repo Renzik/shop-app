@@ -19,7 +19,7 @@ const ShopItem = ({ itemData, onSelect }) => {
     : null;
 
   return (
-    <TouchableComponent style={styles.touchableContainer}>
+    <TouchableComponent style={styles.touchableContainer} onPress={onSelect}>
       <View style={styles.gridContainer}>
         <View style={styles.itemContainer}>
           <View style={styles.imageContainer}>
@@ -31,7 +31,7 @@ const ShopItem = ({ itemData, onSelect }) => {
             </Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.dollarSign}>$</Text>
-              <Text style={styles.text}>{itemData.item.price}</Text>
+              <Text style={styles.text}>{itemData.item.price.toFixed(2)}</Text>
             </View>
           </View>
         </View>

@@ -7,11 +7,11 @@ const ItemList = ({ itemData, navigation }) => {
     return (
       <ShopItem
         itemData={item}
-        // onSelect={() => {
-        //   navigation.navigate({
-        //     routeName: 'ItemDetail',
-        //   });
-        // }}
+        onSelect={() => {
+          navigation.navigate({
+            routeName: 'ProductDetail',
+          });
+        }}
       />
     );
   };

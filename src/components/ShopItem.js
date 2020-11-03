@@ -13,6 +13,7 @@ import Theme from '../../constants/Theme';
 
 const ShopItem = ({ itemData, onSelect }) => {
   let TouchableComponent = TouchableOpacity;
+  const { title, imageUrl, price } = itemData;
 
   Platform.OS === 'android' && Platform.Version >= 21
     ? (TouchableComponent = TouchableNativeFeedback)
@@ -23,15 +24,15 @@ const ShopItem = ({ itemData, onSelect }) => {
       <View style={styles.gridContainer}>
         <View style={styles.itemContainer}>
           <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: itemData.item.imageUrl }} />
+            <Image style={styles.image} source={{ uri: imageUrl }} />
           </View>
           <View style={styles.textContainer}>
             <Text numberOfLines={1} style={styles.text}>
-              {itemData.item.title}
+              {title}
             </Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.dollarSign}>$</Text>
-              <Text style={styles.text}>{itemData.item.price.toFixed(2)}</Text>
+              <Text style={styles.text}>{price.toFixed(2)}</Text>
             </View>
           </View>
         </View>
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 15,
     lineHeight: 25,
+    fontFamily: 'poppins-regular',
   },
   dollarSign: {
     fontSize: 11,

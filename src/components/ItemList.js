@@ -3,13 +3,14 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import ShopItem from './ShopItem';
 
 const ItemList = ({ itemData, navigation }) => {
-  const renderShopItem = item => {
+  const renderShopItem = ({ item }) => {
     return (
       <ShopItem
         itemData={item}
         onSelect={() => {
           navigation.navigate({
             routeName: 'ProductDetail',
+            params: { itemId: item.id, itemName: item.title },
           });
         }}
       />

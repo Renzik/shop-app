@@ -3,21 +3,17 @@ import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 
-import ItemList from '../components/ItemList';
-
 const SearchBox = ({ navigation }) => {
   const [searchInput, setSearchInput] = useState('');
-  const items = useSelector(state => state.products.availableProducts);
-  console.log(searchInput);
 
-  const onSubmit = input => {
-    const filteredItem = items.filter(item =>
-      item.title.toLowerCase().split(' ').includes(input.toLowerCase())
-    );
-
-    // navigation.navigate({routeName: 'SearchResults'})
-
-    return <ItemList itemData={filteredItem} navigation={navigation} />;
+  const onSubmit = () => {
+    setSearchInput('');
+    return navigation.navigate({
+      routeName: 'SearchResults',
+      params: {
+        input: searchInput,
+      },
+    });
   };
 
   return (
@@ -27,7 +23,7 @@ const SearchBox = ({ navigation }) => {
       inputStyle={styles.textInput}
       searchIcon={{ size: 24, color: 'black' }}
       onChangeText={input => setSearchInput(input)}
-      onSubmitEditing={() => onSubmit(searchInput)}
+      onSubmitEditing={() => onSubmit()}
       onClear={() => setSearchInput('')}
       placeholder='Search for curtains'
       placeholderTextColor='#666'
@@ -52,6 +48,11 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     alignItems: 'center',
+    shadowRadius: 6,
+    shadowColor: '#555',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    elevation: 5,
   },
   inputContainer: {
     backgroundColor: 'transparent',

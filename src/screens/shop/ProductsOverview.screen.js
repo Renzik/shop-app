@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import ItemList from '../../components/ItemList';
+import SearchBar from '../../components/SearchBar';
 
 const ProductsOverview = ({ navigation }) => {
   const products = useSelector(state => state.products.availableProducts);
@@ -10,8 +11,11 @@ const ProductsOverview = ({ navigation }) => {
   return <ItemList itemData={products} navigation={navigation} />;
 };
 
-ProductsOverview.navigationOptions = {
-  headerTitle: 'All Products',
+ProductsOverview.navigationOptions = ({ navigation }) => {
+  return {
+    headerTitle: 'All Products',
+    headerRight: () => <SearchBar navigation={navigation} />,
+  };
 };
 
 const styles = StyleSheet.create({});

@@ -1,8 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import ItemList from '../../components/ItemList';
+import { Icon } from 'react-native-elements';
+
+import SearchResultsItemList from '../../components/SearchResultsItemList';
+import SearchBar from '../../components/SearchBar';
 
 const SearchResults = ({ navigation }) => {
   const items = useSelector(state => state.products.availableProducts);
@@ -12,9 +15,62 @@ const SearchResults = ({ navigation }) => {
     item.title.toLowerCase().split(' ').includes(searchInput.toLowerCase())
   );
 
-  return <ItemList itemData={filteredItem} navigation={navigation} />;
+  return filteredItem.length ? (
+    <>
+      <View style={styles.resultsContainer}>
+        <Text style={styles.title}>Results</Text>
+        <Text style={styles.subTitle}>
+          Price and other details may vary based on size and color
+        </Text>
+      </View>
+      <SearchResultsItemList itemData={filteredItem} navigation={navigation} />
+    </>
+  ) : (
+    <View style={styles.container}>
+      <Text style={styles.text}>Apologies, we couldn't find any product related to</Text>
+      <Text style={styles.text}>{searchInput}</Text>
+    </View>
+  );
 };
 
-export default SearchResults;
+SearchResults.navigationOptions = ({ navigation }) => ({
+  headerLeft: () => (
+    <Icon
+      containerStyle={{ paddingHorizontal: 15 }}
+      name='arrow-back'
+      onPress={() => navigation.goBack()}
+    />
+  ),
 
-const styles = StyleSheet.create({});
+  headerRight: () => (
+    <SearchBar style={{ width: Dimensions.get('screen').width * 0.85 }} navigation={navigation} />
+  ),
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+  },
+  resultsContainer: {
+    padding: 15,
+  },
+  text: {
+    color: '#666',
+    fontSize: 15,
+    fontFamily: 'poppins-regular',
+  },
+  title: {
+    fontSize: 17,
+    fontFamily: 'poppins-regular',
+    paddingBottom: 5,
+  },
+  subTitle: {
+    fontSize: 14,
+    color: '#555',
+  },
+});
+
+export default SearchResults;

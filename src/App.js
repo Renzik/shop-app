@@ -15,6 +15,7 @@ const fetchFonts = () => {
     'poppins-thin': require('../assets/Fonts/Poppins-Thin.ttf'),
     'poppins-extra-light': require('../assets/Fonts/Poppins-ExtraLight.ttf'),
     'poppins-regular': require('../assets/Fonts/Poppins-Regular.ttf'),
+    'poppins-medium': require('../assets/Fonts/Poppins-Medium.ttf'),
     'poppins-bold': require('../assets/Fonts/Poppins-Bold.ttf'),
   });
 };

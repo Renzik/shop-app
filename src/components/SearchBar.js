@@ -3,8 +3,9 @@ import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 
-const SearchBox = ({ navigation }) => {
+const SearchBox = ({ navigation, style }) => {
   const [searchInput, setSearchInput] = useState('');
+  const [clearIcon, setClearIcon] = useState(true);
 
   const onSubmit = () => {
     setSearchInput('');
@@ -18,12 +19,16 @@ const SearchBox = ({ navigation }) => {
 
   return (
     <SearchBar
-      containerStyle={styles.container}
+      containerStyle={{ ...styles.container, ...style }}
       inputContainerStyle={styles.inputContainer}
       inputStyle={styles.textInput}
       searchIcon={{ size: 24, color: 'black' }}
+      clearIcon={clearIcon}
       onChangeText={input => setSearchInput(input)}
-      onSubmitEditing={() => onSubmit()}
+      onSubmitEditing={() => {
+        setClearIcon(false);
+        return onSubmit();
+      }}
       onClear={() => setSearchInput('')}
       placeholder='Search for curtains'
       placeholderTextColor='#666'
@@ -38,7 +43,6 @@ export default SearchBox;
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('screen').width * 0.85,
     height: Platform.OS === 'android' ? '75%' : '85%',
     paddingHorizontal: 0,
     marginHorizontal: 10,

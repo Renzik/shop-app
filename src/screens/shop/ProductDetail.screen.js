@@ -1,39 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, Dimensions } from 'react-native';
 import { useSelector } from 'react-redux';
-import * as Sharing from 'expo-sharing';
-import * as FileSystem from 'expo-file-system';
-
-import CustomIcon from '../../components/CustomIcon';
+import { SliderBox } from 'react-native-image-slider-box';
 import { Icon } from 'react-native-elements';
+
+import CustomImage from '../../components/CustomImage';
 import SearchBar from '../../components/SearchBar';
 
 const ProductDetail = ({ navigation }) => {
   const itemId = navigation.getParam('itemId');
 
-  const { title, imageUrl } = useSelector(state =>
+  const { title, images, description } = useSelector(state =>
     state.products.availableProducts.find(item => item.id === itemId)
   );
-
-  const onShare = async imageUrl => {
-    const fileDetails = {
-      fileExtension: '.jpg',
-      shareOptions: {
-        mimeType: 'image/jpeg',
-        dialogTitle: 'Share the image',
-        UTI: 'image/jpeg',
-      },
-    };
-
-    const localUrl = await FileSystem.downloadAsync(
-      imageUrl,
-      FileSystem.documentDirectory + `${title.split(' ').join('-')}${fileDetails.fileExtension}`
-    );
-
-    Sharing.shareAsync(localUrl.uri, fileDetails.shareOptions)
-      .then(data => console.log('shared!'))
-      .catch(err => console.log('ERRRRROR!'));
-  };
 
   return (
     <ScrollView style={styles.mainContainer}>
@@ -41,12 +20,7 @@ const ProductDetail = ({ navigation }) => {
         <View style={styles.topTextContainer}>
           <Text onPress={() => console.log('123')}>Visit Brand Store</Text>
           <Text style={styles.title}>{title}</Text>
-          <View style={styles.imageContainer}>
-            <View style={styles.shareIconContainer}>
-              <CustomIcon onShare={onShare} imageUrl={imageUrl} name={'share-alternative'} />
-            </View>
-            <Image style={styles.image} source={{ uri: imageUrl }} />
-          </View>
+          <SliderBox ImageComponent={CustomImage} images={images} />
         </View>
       </View>
     </ScrollView>
@@ -64,7 +38,9 @@ ProductDetail.navigationOptions = ({ navigation }) => {
         }}
       />
     ),
-    headerRight: () => <SearchBar navigation={navigation} />,
+    headerRight: () => (
+      <SearchBar style={{ width: Dimensions.get('screen').width * 0.85 }} navigation={navigation} />
+    ),
   };
 };
 
@@ -85,21 +61,6 @@ const styles = StyleSheet.create({
     color: '#555',
     paddingTop: 3,
     paddingBottom: 10,
-  },
-  imageContainer: {
-    alignSelf: 'center',
-    width: 350,
-    height: 350,
-  },
-  image: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  shareIconContainer: {
-    position: 'absolute',
-    right: '-5%',
-    zIndex: 99,
   },
 });
 

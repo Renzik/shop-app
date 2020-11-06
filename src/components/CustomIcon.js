@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 const CustomIcon = ({ name, style, onShare, imageUrl }) => {
+  console.log('imageUrl', imageUrl);
   return (
     <View style={styles.iconContainer}>
       <Entypo

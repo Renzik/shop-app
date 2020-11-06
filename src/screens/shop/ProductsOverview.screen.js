@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import ItemList from '../../components/ItemList';
@@ -14,7 +14,9 @@ const ProductsOverview = ({ navigation }) => {
 ProductsOverview.navigationOptions = ({ navigation }) => {
   return {
     headerTitle: 'All Products',
-    headerRight: () => <SearchBar navigation={navigation} />,
+    headerRight: () => (
+      <SearchBar style={{ width: Dimensions.get('screen').width * 0.95 }} navigation={navigation} />
+    ),
   };
 };
 

@@ -8,6 +8,7 @@ import Theme from '../../../constants/Theme';
 
 import CustomImage from '../../components/CustomImage';
 import SearchBar from '../../components/SearchBar';
+import CustomPrice from '../../components/CustomPrice';
 
 const ProductDetail = ({ navigation }) => {
   const itemId = navigation.getParam('itemId');
@@ -35,10 +36,12 @@ const ProductDetail = ({ navigation }) => {
         title={title}
       />
       <View style={styles.middleContainer}>
-        <View style={styles.pricingContainer}>
-          <Text>$</Text>
-          <Text>{price}</Text>
-        </View>
+        <CustomPrice
+          price={price}
+          dollarStyles={{ fontSize: 28 }}
+          dollarSignStyles={{ fontSize: 12, paddingHorizontal: 2, paddingVertical: 4 }}
+          centsStyles={{ paddingVertical: 4 }}
+        />
       </View>
     </ScrollView>
   );
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
   },
   middleContainer: {
     paddingHorizontal: 15,
-    marginVertical: 20,
+    marginVertical: 30,
   },
   pricingContainer: {
     flexDirection: 'row',

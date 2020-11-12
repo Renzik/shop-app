@@ -24,10 +24,6 @@ const SearchResultsItemList = ({ itemData, navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  list: {
-    // padding: 10,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default SearchResultsItemList;

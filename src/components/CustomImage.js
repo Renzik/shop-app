@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import CustomIcon from '../components/CustomIcon';
 
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 
 const CustomImage = props => {
-  console.log('props', props.source.uri);
+  // console.log('props', props);
 
   const onShare = async imageUrl => {
     const fileDetails = {
@@ -20,7 +20,8 @@ const CustomImage = props => {
 
     const localUrl = await FileSystem.downloadAsync(
       imageUrl,
-      FileSystem.documentDirectory + `${title.split(' ').join('-')}${fileDetails.fileExtension}`
+      FileSystem.documentDirectory +
+        `${props.title.split(' ').join('-')}${fileDetails.fileExtension}`
     );
 
     Sharing.shareAsync(localUrl.uri, fileDetails.shareOptions)
@@ -43,7 +44,7 @@ export default CustomImage;
 const styles = StyleSheet.create({
   imageContainer: {
     alignSelf: 'center',
-    width: 350,
+    width: Dimensions.get('screen').width * 0.9,
     height: 350,
   },
   image: {
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   shareIconContainer: {
     position: 'absolute',
-    right: '-5%',
+    right: '-4.5%',
     zIndex: 99,
   },
 });

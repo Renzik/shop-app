@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Theme from '../../constants/Theme';
+import CustomPrice from './CustomPrice';
 
 const ShopItem = ({ itemData, onSelect }) => {
   let TouchableComponent = TouchableOpacity;
@@ -20,19 +21,22 @@ const ShopItem = ({ itemData, onSelect }) => {
     : null;
 
   return (
-    <TouchableComponent style={styles.touchableContainer} onPress={onSelect}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: imageUrl }} />
-      </View>
-      <View style={styles.itemDetails}>
-        <Text style={styles.title}>{title}</Text>
-        <Text numberOfLines={3} style={styles.description}>
-          {description}
-        </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.dollarSign}>$</Text>
-          <Text style={styles.price}>{price.toString().split('.')[0]}</Text>
-          <Text style={styles.cents}>{price.toString().split('.')[1]}</Text>
+    <TouchableComponent onPress={onSelect}>
+      <View style={styles.touchableContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{ uri: imageUrl }} />
+        </View>
+        <View style={styles.itemDetails}>
+          <Text style={styles.title}>{title}</Text>
+          <Text numberOfLines={3} style={styles.description}>
+            {description}
+          </Text>
+          <CustomPrice
+            price={price}
+            dollarSignStyles={styles.dollarSign}
+            dollarStyles={styles.price}
+            centsStyles={styles.cents}
+          />
         </View>
       </View>
     </TouchableComponent>
@@ -80,7 +84,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   price: {
-    fontFamily: 'poppins-medium',
     lineHeight: 29,
     fontSize: 18,
   },

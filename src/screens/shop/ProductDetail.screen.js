@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions, Button } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { useSelector } from 'react-redux';
 import { SliderBox } from 'react-native-image-slider-box';
 import { Icon } from 'react-native-elements';
 import CustomIcon from '../../components/CustomIcon';
 
-import Theme from '../../../constants/Theme';
-
-import CustomImage from '../../components/CustomImage';
 import SearchBar from '../../components/SearchBar';
 import CustomPrice from '../../components/CustomPrice';
 import onShare from '../../utils/onShare';
+import CustomModal from '../../components/CustomModal';
 
 const ProductDetail = ({ navigation }) => {
   const itemId = navigation.getParam('itemId');
   const [currImageIdx, setCurrImageIdx] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
   const { title, images, description, price } = useSelector(state =>
     state.products.availableProducts.find(item => item.id === itemId)
@@ -58,6 +58,7 @@ const ProductDetail = ({ navigation }) => {
           dollarSignStyles={{ fontSize: 12, paddingHorizontal: 2, paddingVertical: 4 }}
           centsStyles={{ paddingVertical: 4 }}
         />
+        <CustomModal />
       </View>
     </ScrollView>
   );

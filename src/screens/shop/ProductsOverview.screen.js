@@ -20,6 +20,4 @@ ProductsOverview.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
-
 export default ProductsOverview;

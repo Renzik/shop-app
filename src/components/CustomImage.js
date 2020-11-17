@@ -6,8 +6,6 @@ import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 
 const CustomImage = props => {
-  // console.log('props', props);
-
   const onShare = async imageUrl => {
     const fileDetails = {
       fileExtension: '.jpg',
@@ -32,14 +30,12 @@ const CustomImage = props => {
   return (
     <View style={styles.imageContainer}>
       <View style={styles.shareIconContainer}>
-        <CustomIcon onShare={onShare} imageUrl={props.source.uri} name={'share-alternative'} />
+        <CustomIcon onShare={onShare} imageUrl={props.source.uri} name='share-alternative' />
       </View>
       <Image style={styles.image} source={{ uri: props.source.uri }} />
     </View>
   );
 };
-
-export default CustomImage;
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -58,3 +54,5 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
 });
+
+export default CustomImage;

@@ -13,7 +13,7 @@ import Theme from '../../constants/Theme';
 
 const ShopItem = ({ itemData, onSelect }) => {
   let TouchableComponent = TouchableOpacity;
-  const { title, imageUrl, price } = itemData;
+  const { title, images, price } = itemData;
 
   Platform.OS === 'android' && Platform.Version >= 21
     ? (TouchableComponent = TouchableNativeFeedback)
@@ -24,7 +24,11 @@ const ShopItem = ({ itemData, onSelect }) => {
       <View style={styles.gridContainer}>
         <View style={styles.itemContainer}>
           <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: imageUrl }} />
+            <Image
+              style={styles.image}
+              source={{ uri: images[0] }}
+              onError={err => (Platform.OS === 'android' ? console.log('ERROR:', err) : null)}
+            />
           </View>
           <View style={styles.textContainer}>
             <Text numberOfLines={1} style={styles.text}>

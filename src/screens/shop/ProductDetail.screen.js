@@ -31,7 +31,7 @@ const ProductDetail = ({ navigation }) => {
         circleLoop
         inactiveDotColor='#90A4AE'
         dotStyle={styles.sliderDotStyles}
-        ImageComponent={CustomImage}
+        // ImageComponent={Image}
         images={images}
         title={title}
       />

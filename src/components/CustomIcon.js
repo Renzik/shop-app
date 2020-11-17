@@ -2,12 +2,11 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-const CustomIcon = ({ name, style, onShare, imageUrl }) => {
-  // console.log('imageUrl', imageUrl);
+const CustomIcon = ({ name, style, onShare, imageUrl, title }) => {
   return (
     <View style={styles.iconContainer}>
       <Entypo
-        onPress={() => onShare(imageUrl)}
+        onPress={() => onShare(imageUrl, title)}
         style={{ ...style, ...styles.icon }}
         name={name}
         size={20}

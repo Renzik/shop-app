@@ -28,7 +28,7 @@ const ProductDetail = ({ navigation }) => {
           <Text style={styles.title}>{title}</Text>
         </View>
       </View>
-      <View style={styles.imageContainer}>
+      <View style={{ ...styles.imageContainer }}>
         <SliderBox
           imageLoadingColor='#2196F3'
           dotColor='#999999'
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
   },
 });
 

@@ -7,60 +7,82 @@ import {
   Button,
   Dimensions,
   TouchableHighlight,
+  TouchableWithoutFeedback,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform,
+  ScrollView,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Icon } from 'react-native-elements';
 
+import ModalDropdown from 'react-native-modal-dropdown';
+
 const CustomModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+  let TouchableComponent = TouchableOpacity;
+
+  if (Platform.OS === 'android') TouchableComponent = TouchableNativeFeedback;
+
+  const onSelect = option => {
+    setQuantity(option);
+    setModalVisible(false);
+  };
+
+  const optionHandler = option => {
+    return option !== quantity ? (
+      <View style={styles.modalOptionsContainer} key={option}>
+        <Text onPress={() => onSelect(option)} style={styles.modalOption}>
+          {option}
+        </Text>
+      </View>
+    ) : (
+      <View style={styles.modalOptionSelected} key={option}>
+        <Text onPress={() => onSelect(option)} style={styles.modalOption}>
+          {option}
+        </Text>
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <Modal transparent={true} visible={modalVisible} animationType='fade'>
-        <View style={{ ...styles.innerContainer, ...styles.container }}>
-          <View style={styles.modalOpenContainer}>
-            <View style={styles.modalOpenTopContainer}>
-              <Text style={styles.modalOpenText}>Qty:</Text>
-              <Icon
-                size={22}
-                name='close'
-                color='grey'
-                onPress={() => setModalVisible(!modalVisible)}
-              />
+        <TouchableWithoutFeedback onPress={setModalVisible.bind(this, false)}>
+          <View style={{ ...styles.innerContainer, ...styles.container }}>
+            <View style={styles.modalOpenContainer}>
+              <View style={styles.modalOpenTopContainer}>
+                <Text style={styles.modalOpenTitle}>Qty:</Text>
+                <Icon
+                  size={22}
+                  name='close'
+                  color='grey'
+                  onPress={() => setModalVisible(!modalVisible)}
+                />
+              </View>
+              <ScrollView persistentScrollbar={true}>
+                {options.map(option => optionHandler(option))}
+              </ScrollView>
             </View>
-
-            <Picker
-              itemStyle={{}}
-              // style={{ paddingVertical: 0, height: 150 }}
-              selectedValue={quantity}
-              onValueChange={qtyVal => setQuantity(qtyVal)}>
-              <Picker.Item label='1' value={1} />
-              <Picker.Item label='2' value={2} />
-              <Picker.Item label='3' value={3} />
-              <Picker.Item label='4' value={4} />
-              <Picker.Item label='5' value={5} />
-              <Picker.Item label='6' value={6} />
-              <Picker.Item label='7' value={7} />
-              <Picker.Item label='8' value={8} />
-              <Picker.Item label='9' value={9} />
-              <Picker.Item label='10' value={10} />
-            </Picker>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
-      <TouchableHighlight
-        style={styles.modalClosedContainer}
-        onPress={() => setModalVisible(!modalVisible)}>
-        <View style={styles.modalClosed}>
-          <Text style={styles.modalClosedText}>
-            Qty:{'  '}
-            {quantity}
-          </Text>
-          <Icon size={28} name='keyboard-arrow-down' />
+      {/* MODAL BUTTON BELOW */}
+      <TouchableComponent onPress={() => setModalVisible(!modalVisible)}>
+        <View style={styles.modalClosedContainer}>
+          <View style={styles.modalClosed}>
+            <Text style={styles.modalClosedText}>
+              Qty:{'  '}
+              {quantity}
+            </Text>
+            <Icon size={28} name='keyboard-arrow-down' />
+          </View>
         </View>
-      </TouchableHighlight>
+      </TouchableComponent>
     </View>
   );
 };
@@ -69,27 +91,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   innerContainer: {
     backgroundColor: 'rgba(100,100,100, 0.6)',
   },
   modalOpenContainer: {
+    width: Dimensions.get('screen').width * 0.42,
+    height: '63%',
     backgroundColor: 'white',
-    width: Dimensions.get('screen').width * 0.45,
     borderRadius: 8,
     overflow: 'hidden',
-    padding: 0,
-    margin: 0,
+    alignSelf: 'center',
   },
   modalOpenTopContainer: {
-    paddingVertical: 25,
+    paddingVertical: 18,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#f3f3f3',
   },
-  modalOpenText: {
+  modalOpenTitle: {
     fontFamily: 'poppins-bold',
     fontSize: 16,
   },
@@ -100,7 +121,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     marginVertical: 10,
-    alignSelf: 'flex-start',
   },
   modalClosed: {
     width: '100%',
@@ -113,6 +133,25 @@ const styles = StyleSheet.create({
   modalClosedText: {
     fontFamily: 'poppins-regular',
     fontSize: 12,
+  },
+  modalOptionsContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#f3f3f3',
+    borderColor: '#f3f3f3',
+    paddingLeft: 15,
+  },
+  modalOption: {
+    fontFamily: 'poppins-regular',
+    paddingVertical: 10,
+    fontSize: 16,
+  },
+  modalOptionSelected: {
+    backgroundColor: '#ff9800a8',
+    borderWidth: 1,
+    borderColor: '#ff9800',
+    borderLeftWidth: 5,
+    borderLeftColor: '#ff9800',
+    paddingLeft: 10,
   },
 });
 

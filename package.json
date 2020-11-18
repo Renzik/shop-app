@@ -22,6 +22,7 @@
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-image-slider-box": "^1.0.12",
+    "react-native-modal-dropdown": "git+https://github.com/siemiatj/react-native-modal-dropdown.git",
     "react-native-reanimated": "~1.13.0",
     "react-native-screens": "^2.12.0",
     "react-native-web": "~0.13.12",

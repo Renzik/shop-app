@@ -4,19 +4,14 @@ import {
   Text,
   View,
   Modal,
-  Button,
   Dimensions,
-  TouchableHighlight,
   TouchableWithoutFeedback,
   TouchableNativeFeedback,
   TouchableOpacity,
   Platform,
   ScrollView,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import { Icon } from 'react-native-elements';
-
-import ModalDropdown from 'react-native-modal-dropdown';
 
 const CustomModal = () => {
   const [modalVisible, setModalVisible] = useState(false);

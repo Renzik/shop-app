@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Dimensions, Platform } from 'react-native';
-import { useSelector } from 'react-redux';
+import { StyleSheet, Platform } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 const SearchBox = ({ navigation, style }) => {

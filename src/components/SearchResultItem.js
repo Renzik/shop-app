@@ -14,7 +14,7 @@ import CustomPrice from './CustomPrice';
 
 const ShopItem = ({ itemData, onSelect }) => {
   let TouchableComponent = TouchableOpacity;
-  const { title, imageUrl, price, description } = itemData;
+  const { title, images, price, description } = itemData;
 
   Platform.OS === 'android' && Platform.Version >= 21
     ? (TouchableComponent = TouchableNativeFeedback)
@@ -24,7 +24,7 @@ const ShopItem = ({ itemData, onSelect }) => {
     <TouchableComponent onPress={onSelect}>
       <View style={styles.touchableContainer}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: imageUrl }} />
+          <Image style={styles.image} source={{ uri: images[0] }} />
         </View>
         <View style={styles.itemDetails}>
           <Text style={styles.title}>{title}</Text>

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions, Button } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import { useSelector } from 'react-redux';
 import { SliderBox } from 'react-native-image-slider-box';
 import { Icon } from 'react-native-elements';
-import CustomIcon from '../../components/CustomIcon';
 
+import CustomIcon from '../../components/CustomIcon';
 import SearchBar from '../../components/SearchBar';
 import CustomPrice from '../../components/CustomPrice';
 import onShare from '../../utils/onShare';
 import CustomModal from '../../components/CustomModal';
+import CustomButton from '../../components/ProductDetail/CustomButton';
+import Theme from '../../../constants/Theme';
 
 const ProductDetail = ({ navigation }) => {
   const itemId = navigation.getParam('itemId');
   const [currImageIdx, setCurrImageIdx] = useState(0);
-  const [quantity, setQuantity] = useState(0);
 
   const { title, images, description, price } = useSelector(state =>
     state.products.availableProducts.find(item => item.id === itemId)
@@ -59,6 +59,12 @@ const ProductDetail = ({ navigation }) => {
           centsStyles={{ paddingVertical: 4 }}
         />
         <CustomModal />
+        <CustomButton onPress={() => console.log('ADD TO CART')} style={styles.addToCart}>
+          Add to Cart
+        </CustomButton>
+        <CustomButton onPress={() => console.log('BUY NOW')} style={styles.buyNow}>
+          Buy Now
+        </CustomButton>
       </View>
     </ScrollView>
   );
@@ -119,6 +125,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginBottom: 20,
+  },
+  addToCart: {
+    backgroundColor: '#FFBC47',
+    marginTop: 10,
+  },
+  buyNow: {
+    backgroundColor: '#FF9C1D',
+    marginVertical: 12,
   },
 });
 

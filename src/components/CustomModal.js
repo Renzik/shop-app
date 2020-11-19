@@ -46,8 +46,10 @@ const CustomModal = () => {
   return (
     <View style={styles.container}>
       <Modal transparent={true} visible={modalVisible} animationType='fade'>
-        <TouchableWithoutFeedback onPress={setModalVisible.bind(this, false)}>
-          <View style={{ ...styles.innerContainer, ...styles.container }}>
+        <TouchableWithoutFeedback
+          style={{ width: 400 }}
+          onPress={setModalVisible.bind(this, false)}>
+          <View style={styles.innerContainer}>
             <View style={styles.modalOpenContainer}>
               <View style={styles.modalOpenTopContainer}>
                 <Text style={styles.modalOpenTitle}>Qty:</Text>
@@ -67,6 +69,7 @@ const CustomModal = () => {
       </Modal>
 
       {/* MODAL BUTTON BELOW */}
+
       <TouchableComponent onPress={() => setModalVisible(!modalVisible)}>
         <View style={styles.modalClosedContainer}>
           <View style={styles.modalClosed}>
@@ -84,11 +87,12 @@ const CustomModal = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    width: '22.5%',
   },
   innerContainer: {
+    flex: 1,
     backgroundColor: 'rgba(100,100,100, 0.6)',
+    justifyContent: 'center',
   },
   modalOpenContainer: {
     width: Dimensions.get('screen').width * 0.42,
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   modalClosedContainer: {
-    width: '22.5%',
+    width: '100%',
     backgroundColor: '#f3f3f3',
     borderColor: '#ccc',
     borderRadius: 8,
@@ -118,8 +122,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   modalClosed: {
-    width: '100%',
-    height: 32,
     paddingLeft: 10,
     flexDirection: 'row',
     alignItems: 'center',

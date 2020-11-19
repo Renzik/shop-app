@@ -14,7 +14,7 @@ const PRODUCTS = [
     'u1',
     'Ocean Wave Shower Curtain',
     ['https://images-na.ssl-images-amazon.com/images/I/61G--wvq52L._AC_SY450_.jpg'],
-    'This is a japanese kanagawa wave-themed shower curtain, showing a oriental atmosphere.Astronauts Riding Whales in Ocean Wave, adding richer Funny decoration to the bathroom.',
+    'This is a japanese kanagawa wave-themed shower curtain, showing a oriental atmosphere. Astronauts Riding Whales in Ocean Wave, adding richer Funny decoration to the bathroom.',
     29.99
   ),
   new Product(
@@ -22,7 +22,7 @@ const PRODUCTS = [
     'u1',
     'Tropical Desert Fabric Shower Curtain',
     ['https://images-na.ssl-images-amazon.com/images/I/61AFCdtoGRL._AC_SY355_.jpg'],
-    'KEEPS WATER INSIDE -- NEW resin coating technology keeps water slide off the fabric shower curtain and quick drying. No liner required.',
+    'KEEPS WATER INSIDE - NEW resin coating technology keeps water slide off the fabric shower curtain and quick drying. No liner required.',
     99.99
   ),
   new Product(

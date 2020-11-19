@@ -10,7 +10,7 @@ import CustomPrice from '../../components/CustomPrice';
 import onShare from '../../utils/onShare';
 import CustomModal from '../../components/CustomModal';
 import CustomButton from '../../components/ProductDetail/CustomButton';
-import Theme from '../../../constants/Theme';
+import SimilarItem from '../../components/ProductDetail/SimilarItem';
 
 const ProductDetail = ({ navigation }) => {
   const itemId = navigation.getParam('itemId');
@@ -28,7 +28,7 @@ const ProductDetail = ({ navigation }) => {
           <Text style={styles.title}>{title}</Text>
         </View>
       </View>
-      <View style={{ ...styles.imageContainer }}>
+      <View style={styles.imageContainer}>
         <SliderBox
           imageLoadingColor='#2196F3'
           dotColor='#999999'
@@ -52,6 +52,9 @@ const ProductDetail = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.middleContainer}>
+        <Text style={styles.descriptionTitle}>Description</Text>
+        <Text style={styles.description}>{description}</Text>
+
         <CustomPrice
           price={price}
           dollarStyles={{ fontSize: 28 }}
@@ -65,6 +68,9 @@ const ProductDetail = ({ navigation }) => {
         <CustomButton onPress={() => console.log('BUY NOW')} style={styles.buyNow}>
           Buy Now
         </CustomButton>
+      </View>
+      <View style={styles.bottomContainer}>
+        <SimilarItem itemId={itemId} navigation={navigation} />
       </View>
     </ScrollView>
   );
@@ -133,6 +139,14 @@ const styles = StyleSheet.create({
   buyNow: {
     backgroundColor: '#FF9C1D',
     marginVertical: 12,
+  },
+  descriptionTitle: {
+    fontFamily: 'poppins-bold',
+    fontSize: 18,
+  },
+  description: {
+    marginVertical: 10,
+    fontFamily: 'poppins-regular',
   },
 });
 

@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height * 0.2,
     justifyContent: 'center',
     margin: 15,
-    // marginBottom: 500,
     padding: 15,
     borderWidth: 1,
     borderRadius: 4,

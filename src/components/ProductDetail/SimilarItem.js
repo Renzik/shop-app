@@ -38,8 +38,6 @@ const SimilarItem = ({ itemId, navigation }) => {
   );
 };
 
-export default SimilarItem;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,3 +81,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default SimilarItem;

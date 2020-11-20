@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
-
-import ShopItem from '../ShopItem';
 
 const SimilarItem = ({ itemId, navigation }) => {
   const items = useSelector(({ products: { availableProducts } }) => availableProducts);
@@ -81,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SimilarItem;
+export default memo(SimilarItem);

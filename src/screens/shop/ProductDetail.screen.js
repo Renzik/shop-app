@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions, Button } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SliderBox } from 'react-native-image-slider-box';
 import { Icon } from 'react-native-elements';
 
@@ -12,20 +12,25 @@ import CustomModal from '../../components/CustomModal';
 import CustomButton from '../../components/ProductDetail/CustomButton';
 import SimilarItem from '../../components/ProductDetail/SimilarItem';
 
+import { addToCart } from '../../redux/actions/cart.actions';
+
 const ProductDetail = ({ navigation }) => {
   const itemId = navigation.getParam('itemId');
   const [currImageIdx, setCurrImageIdx] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
-  const { title, images, description, price } = useSelector(state =>
+  const item = useSelector(state =>
     state.products.availableProducts.find(item => item.id === itemId)
   );
+
+  const dispatch = useDispatch();
 
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <View style={styles.topTextContainer}>
           <Text onPress={() => console.log('123')}>Visit Brand Store</Text>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{item.title}</Text>
         </View>
       </View>
       <View style={styles.imageContainer}>
@@ -36,8 +41,8 @@ const ProductDetail = ({ navigation }) => {
           inactiveDotColor='#e3e3e3'
           dotStyle={styles.sliderDotStyles}
           currentImageEmitter={idx => setCurrImageIdx(idx)}
-          images={images}
-          title={title}
+          images={item.images}
+          title={item.title}
           sliderBoxHeight={350}
           parentWidth={Dimensions.get('screen').width * 0.9}
         />
@@ -45,24 +50,29 @@ const ProductDetail = ({ navigation }) => {
           <CustomIcon
             style={styles.customIcon}
             onShare={onShare}
-            title={title}
-            imageUrl={images[currImageIdx]}
+            title={item.title}
+            imageUrl={item.images[currImageIdx]}
             name='share-alternative'
           />
         </View>
       </View>
       <View style={styles.middleContainer}>
         <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.description}>{item.description}</Text>
 
         <CustomPrice
-          price={price}
+          price={item.price}
           dollarStyles={{ fontSize: 28 }}
           dollarSignStyles={{ fontSize: 12, paddingHorizontal: 2, paddingVertical: 4 }}
           centsStyles={{ paddingVertical: 4 }}
         />
-        <CustomModal />
-        <CustomButton onPress={() => console.log('ADD TO CART')} style={styles.addToCart}>
+        <CustomModal quantity={quantity} setQuantity={setQuantity} />
+        <CustomButton
+          onPress={() => {
+            dispatch(addToCart(item, quantity));
+            setQuantity(1);
+          }}
+          style={styles.addToCart}>
           Add to Cart
         </CustomButton>
         <CustomButton onPress={() => console.log('BUY NOW')} style={styles.buyNow}>

@@ -13,9 +13,9 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-const CustomModal = () => {
+const CustomModal = ({ quantity, setQuantity }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   let TouchableComponent = TouchableOpacity;

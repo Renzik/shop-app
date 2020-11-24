@@ -4,7 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Ionicons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 
 import Theme from '../../constants/Theme';
 
@@ -41,7 +41,7 @@ const tabScreenConfig = {
     screen: ProductsNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return <AntDesign name='home' size={25} color={tabInfo.tintColor} />;
+        return <SimpleLineIcons name='home' size={20} color={tabInfo.tintColor} />;
       },
     },
   },
@@ -57,7 +57,18 @@ const tabScreenConfig = {
 
 const BottomNavigator =
   Platform.OS === 'android'
-    ? createMaterialBottomTabNavigator()
-    : createBottomTabNavigator(tabScreenConfig);
+    ? createMaterialBottomTabNavigator(tabScreenConfig, {
+        labeled: false,
+        barStyle: { backgroundColor: 'white' },
+        activeColor: Theme.orange,
+        inactiveColor: 'black',
+      })
+    : createBottomTabNavigator(tabScreenConfig, {
+        tabBarOptions: {
+          showLabel: false,
+          activeTintColor: Theme.orange,
+          inactiveTintColor: 'black',
+        },
+      });
 
 export default createAppContainer(BottomNavigator);

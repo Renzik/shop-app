@@ -8,7 +8,6 @@ import { AppLoading } from 'expo';
 import { store } from './redux/store';
 
 import ProductsNavigator from './navigation/Shop.navigator';
-import SearchBar from './components/SearchBar';
 
 const fetchFonts = () => {
   return Font.loadAsync({

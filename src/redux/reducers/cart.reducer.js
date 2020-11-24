@@ -10,31 +10,38 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case cartActions.ADD_TO_CART:
       const item = action.payload;
-      const quantity = action.quantity;
+      const orderQuantity = action.quantity;
+      const itemInState = state.items[item.id];
 
-      console.log(state.items);
-      return state.items[item.id]
-        ? {
-            ...state,
-            items: {
-              ...state.items,
-              [item.id]: new CartItem(
-                state.items[item.id].quantity + quantity,
-                item.price,
-                item.title,
-                item.price * state.items[item.id].quantity
-              ),
-            },
-            total: (state.total += item.price),
-          }
-        : {
-            ...state,
-            items: {
-              ...state.items,
-              [item.id]: new CartItem(quantity, item.price, item.title, item.price),
-            },
-            total: (state.total += item.price),
-          };
+      if (itemInState) {
+        return {
+          ...state,
+          items: {
+            ...state.items,
+            [item.id]: new CartItem(
+              itemInState.quantity + orderQuantity,
+              item.price,
+              item.title,
+              item.price * (itemInState.quantity + orderQuantity)
+            ),
+          },
+          total: (state.total += item.price * orderQuantity),
+        };
+      } else {
+        return {
+          ...state,
+          items: {
+            ...state.items,
+            [item.id]: new CartItem(
+              orderQuantity,
+              item.price,
+              item.title,
+              item.price * orderQuantity
+            ),
+          },
+          total: (state.total += item.price * orderQuantity),
+        };
+      }
 
     default:
       return state;

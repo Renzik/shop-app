@@ -16,21 +16,27 @@ import Cart from '../screens/shop/Cart.screen';
 const defaultOptions = {
   headerStyle: {
     backgroundColor: Theme.orange,
+    height: Platform.OS === 'ios' ? 75 : 80,
   },
   headerTintColor: Theme.black,
   headerTitleStyle: {
     display: 'none',
   },
-  headerMode: 'none',
 };
 
 const ProductsNavigator = createStackNavigator(
   {
     ProductsOverview: {
       screen: ProductsOverview,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
     },
     ProductDetail: {
       screen: ProductDetail,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
     },
     SearchResults: SearchResults,
   },
@@ -41,10 +47,15 @@ const CartNavigator = createStackNavigator(
   {
     Cart: {
       screen: Cart,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
     },
-    SearchResults: SearchResults,
-    ProductDetail: {
-      screen: ProductDetail,
+    SearchResults: {
+      screen: SearchResults,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
     },
   },
   { defaultNavigationOptions: defaultOptions }

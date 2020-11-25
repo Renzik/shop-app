@@ -24,6 +24,4 @@ const SearchResultsItemList = ({ itemData, navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export default SearchResultsItemList;

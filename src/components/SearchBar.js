@@ -29,7 +29,7 @@ const SearchBox = ({ navigation, style }) => {
         return onSubmit();
       }}
       onClear={() => setSearchInput('')}
-      placeholder='Search for curtains'
+      placeholder='Search Curtains'
       placeholderTextColor='#666'
       value={searchInput}
       returnKeyType='search'

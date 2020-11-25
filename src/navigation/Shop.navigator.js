@@ -51,6 +51,7 @@ const CartNavigator = createStackNavigator(
         safeAreaInsets: { bottom: 0, top: 23 },
       },
     },
+    ProductDetail: ProductDetail,
     SearchResults: {
       screen: SearchResults,
       navigationOptions: {

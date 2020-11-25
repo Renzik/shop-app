@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import ItemList from '../../components/ItemList';

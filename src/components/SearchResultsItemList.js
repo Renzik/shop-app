@@ -18,10 +18,14 @@ const SearchResultsItemList = ({ itemData, navigation }) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList renderItem={renderShopItem} data={itemData} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { paddingBottom: '20%' },
+});
 
 export default SearchResultsItemList;

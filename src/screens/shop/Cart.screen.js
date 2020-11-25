@@ -6,7 +6,7 @@ import SearchBar from '../../components/SearchBar';
 import CartItemList from '../../components/Cart/CartItemList';
 
 const Cart = ({ navigation }) => {
-  const cartTotal = useSelector(({ cart: { total } }) => total);
+  const cartTotal = useSelector(({ cart: { total } }) => total).toFixed(2);
   const cartItems = useSelector(({ cart: { items } }) => {
     const transformedItems = [];
 
@@ -18,12 +18,25 @@ const Cart = ({ navigation }) => {
         quantity: currItem.quantity,
         sum: currItem.sum,
         title: currItem.title,
+        images: currItem.images,
       });
     }
     return transformedItems;
   });
+  const itemOrItems = cartItems.length === 1 ? 'item' : 'items';
 
-  return <CartItemList cartItems={cartItems} navigation={navigation} />;
+  return (
+    <View style={styles.container}>
+      <View style={styles.cartDetails}>
+        <Text>
+          Subtotal ({cartItems.length} {itemOrItems}): {cartTotal}
+        </Text>
+      </View>
+      <View style={styles.itemList}>
+        <CartItemList cartItems={cartItems} navigation={navigation} />
+      </View>
+    </View>
+  );
 };
 
 Cart.navigationOptions = ({ navigation }) => {
@@ -35,6 +48,16 @@ Cart.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  cartDetails: {
+    marginVertical: 10,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+  },
+});
 
 export default Cart;

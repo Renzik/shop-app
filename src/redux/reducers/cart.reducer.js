@@ -22,7 +22,8 @@ export default (state = initialState, action) => {
               itemInState.quantity + orderQuantity,
               item.price,
               item.title,
-              item.price * (itemInState.quantity + orderQuantity)
+              item.price * (itemInState.quantity + orderQuantity),
+              item.images
             ),
           },
           total: (state.total += item.price * orderQuantity),
@@ -36,7 +37,8 @@ export default (state = initialState, action) => {
               orderQuantity,
               item.price,
               item.title,
-              item.price * orderQuantity
+              item.price * orderQuantity,
+              item.images
             ),
           },
           total: (state.total += item.price * orderQuantity),

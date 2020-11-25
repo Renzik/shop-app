@@ -18,7 +18,7 @@ const SearchResultsItemList = ({ itemData, navigation }) => {
   };
 
   return (
-    <View style={styles.list}>
+    <View>
       <FlatList renderItem={renderShopItem} data={itemData} />
     </View>
   );

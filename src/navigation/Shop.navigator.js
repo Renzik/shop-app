@@ -21,6 +21,7 @@ const defaultOptions = {
   headerTitleStyle: {
     display: 'none',
   },
+  headerMode: 'none',
 };
 
 const ProductsNavigator = createStackNavigator(
@@ -36,20 +37,33 @@ const ProductsNavigator = createStackNavigator(
   { defaultNavigationOptions: defaultOptions }
 );
 
+const CartNavigator = createStackNavigator(
+  {
+    Cart: {
+      screen: Cart,
+    },
+    SearchResults: SearchResults,
+    ProductDetail: {
+      screen: ProductDetail,
+    },
+  },
+  { defaultNavigationOptions: defaultOptions }
+);
+
 const tabScreenConfig = {
   Products: {
     screen: ProductsNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return <SimpleLineIcons name='home' size={20} color={tabInfo.tintColor} />;
+        return <SimpleLineIcons name='home' size={23} color={tabInfo.tintColor} />;
       },
     },
   },
   Cart: {
-    screen: Cart,
+    screen: CartNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return <AntDesign name='shoppingcart' size={25} color={tabInfo.tintColor} />;
+        return <AntDesign name='shoppingcart' size={27} color={tabInfo.tintColor} />;
       },
     },
   },

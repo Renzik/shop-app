@@ -13,7 +13,6 @@ const ProductsOverview = ({ navigation }) => {
 
 ProductsOverview.navigationOptions = ({ navigation }) => {
   return {
-    headerTitle: 'All Products',
     headerRight: () => (
       <SearchBar style={{ width: Dimensions.get('screen').width * 0.95 }} navigation={navigation} />
     ),

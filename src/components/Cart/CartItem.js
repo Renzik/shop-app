@@ -9,9 +9,12 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import CustomButton from '../ProductDetail/CustomButton';
 import CartQtyButton from '../UI/CartQtyButton';
+
+import { deleteItem } from '../../redux/actions/cart.actions';
 
 const CartItem = ({ item, onSelect }) => {
   let TouchableComponent = TouchableOpacity;
@@ -19,6 +22,8 @@ const CartItem = ({ item, onSelect }) => {
   Platform.OS === 'android' && Platform.Version >= 21
     ? (TouchableComponent = TouchableNativeFeedback)
     : null;
+
+  const dispatch = useDispatch();
 
   return (
     <TouchableComponent style={styles.touchableContainer} onPress={onSelect}>
@@ -40,7 +45,10 @@ const CartItem = ({ item, onSelect }) => {
       <View style={styles.actionsContainer}>
         <CartQtyButton quantity={item.quantity} itemId={item.id} />
         <View>
-          <CustomButton textStyles={styles.deleteButtonTextStyles} style={styles.deleteButton}>
+          <CustomButton
+            onPress={() => dispatch(deleteItem(item.id))}
+            textStyles={styles.deleteButtonTextStyles}
+            style={styles.deleteButton}>
             Delete
           </CustomButton>
         </View>

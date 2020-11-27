@@ -1,5 +1,7 @@
 import { cartActions } from '../actions/cart.actions';
 import CartItem from '../../models/cart-item';
+import Cart from '../../screens/shop/Cart.screen';
+import { ActionSheetIOS } from 'react-native';
 
 const initialState = {
   items: {},
@@ -47,7 +49,6 @@ export default (state = initialState, action) => {
 
     case cartActions.INCREASE_QTY:
       const currItem = state.items[action.payload];
-      console.log(currItem);
 
       return {
         ...state,
@@ -62,6 +63,43 @@ export default (state = initialState, action) => {
           ),
         },
       };
+
+    case cartActions.DECREASE_QTY:
+      const theItem = state.items[action.payload];
+      const id = action.payload;
+
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [id]: new CartItem(
+            theItem.quantity - 1,
+            theItem.price,
+            theItem.title,
+            theItem.price * (theItem.quantity - 1),
+            theItem.images
+          ),
+        },
+      };
+
+    case cartActions.DELETE_ITEM:
+      const aItem = state.items[action.payload];
+      const itemId = action.payload;
+
+      const remakeState = () => {
+        const newStateItems = { items: {}, total: 0 };
+        for (const key in state.items) {
+          const item = state.items[key];
+          if (key !== itemId) {
+            newStateItems.items[key] = item;
+            newStateItems.total += item.sum;
+          }
+        }
+        console.log(newStateItems);
+        return newStateItems;
+      };
+
+      return remakeState();
 
     default:
       return state;

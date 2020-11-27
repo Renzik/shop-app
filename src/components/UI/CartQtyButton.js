@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import CustomIcon from '../CustomIcon';
 import Theme from '../../../constants/Theme';
-import { increaseQty } from '../../redux/actions/cart.actions';
+import { increaseQty, decreaseQty, deleteItem } from '../../redux/actions/cart.actions';
 
 const CartQtyButton = ({ quantity, itemId }) => {
   let TouchableComponent = TouchableOpacity;
@@ -16,9 +16,13 @@ const CartQtyButton = ({ quantity, itemId }) => {
 
   const dispatch = useDispatch();
 
+  const decreaseOrDelete = id =>
+    quantity <= 1 ? dispatch(deleteItem(id)) : dispatch(decreaseQty(id));
+
   return (
     <View style={styles.container}>
       <TouchableComponent
+        onPress={() => decreaseOrDelete(itemId)}
         style={{
           ...styles.increaseDecreaseContainer,
           borderRightWidth: 1,

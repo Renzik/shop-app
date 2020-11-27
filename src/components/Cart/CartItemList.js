@@ -18,11 +18,7 @@ const CartItemList = ({ cartItems, navigation }) => {
     );
   };
 
-  return (
-    <View>
-      <FlatList data={cartItems} renderItem={renderCartItem} />
-    </View>
-  );
+  return <FlatList data={cartItems} renderItem={renderCartItem} />;
 };
 
 export default CartItemList;

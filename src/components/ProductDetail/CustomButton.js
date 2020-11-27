@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const CustomButton = ({ onPress, style, children }) => {
+const CustomButton = ({ onPress, style, children, textStyles }) => {
   let TouchableComponent = TouchableOpacity;
 
   Platform.OS === 'android' && Platform.Version >= 21
@@ -18,7 +18,7 @@ const CustomButton = ({ onPress, style, children }) => {
   return (
     <TouchableComponent onPress={onPress} style={styles.container}>
       <View style={{ ...styles.innerContainer, ...style }}>
-        <Text style={styles.text}>{children}</Text>
+        <Text style={{ ...styles.text, ...textStyles }}>{children}</Text>
       </View>
     </TouchableComponent>
   );

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import SearchBar from '../../components/SearchBar';
 import CartItemList from '../../components/Cart/CartItemList';
+import CustomButton from '../../components/ProductDetail/CustomButton';
 
 const Cart = ({ navigation }) => {
   const cartTotal = useSelector(({ cart: { total } }) => total).toFixed(2);
@@ -27,11 +28,15 @@ const Cart = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.br} />
       <View style={styles.cartDetails}>
-        <Text>
-          Subtotal ({cartItems.length} {itemOrItems}): {cartTotal}
+        <Text style={styles.cartSummary}>
+          Subtotal ({cartItems.length} {itemOrItems}):{' '}
+          <Text style={styles.cartSubtotal}>${cartTotal}</Text>
         </Text>
+        <CustomButton style={styles.checkoutButton}>Checkout Cart</CustomButton>
       </View>
+      <View style={styles.thinBr} />
       <View style={styles.itemList}>
         <CartItemList cartItems={cartItems} navigation={navigation} />
       </View>
@@ -51,13 +56,39 @@ Cart.navigationOptions = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 15,
+    backgroundColor: '#fff',
+  },
+  br: {
+    borderTopWidth: 6,
+    borderTopColor: '#ededed',
+    width: Dimensions.get('screen').width,
+    alignSelf: 'center',
+  },
+  thinBr: {
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+    width: Dimensions.get('screen').width,
+    alignSelf: 'center',
+    marginBottom: 10,
   },
   cartDetails: {
-    marginVertical: 10,
+    height: '18%',
     paddingVertical: 10,
-    borderBottomWidth: 1,
   },
+  cartSummary: {
+    fontFamily: 'poppins-regular',
+    paddingBottom: 20,
+  },
+  cartSubtotal: {
+    color: '#A81B16',
+    fontFamily: 'poppins-bold',
+    letterSpacing: 1,
+  },
+  checkoutButton: {
+    backgroundColor: '#FFBC47',
+  },
+  itemList: {},
 });
 
 export default Cart;

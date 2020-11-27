@@ -45,6 +45,24 @@ export default (state = initialState, action) => {
         };
       }
 
+    case cartActions.INCREASE_QTY:
+      const currItem = state.items[action.payload];
+      console.log(currItem);
+
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [action.payload]: new CartItem(
+            currItem.quantity + 1,
+            currItem.price,
+            currItem.title,
+            currItem.price * (currItem.quantity + 1),
+            currItem.images
+          ),
+        },
+      };
+
     default:
       return state;
   }

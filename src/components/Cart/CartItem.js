@@ -38,9 +38,7 @@ const CartItem = ({ item, onSelect }) => {
         </View>
       </View>
       <View style={styles.actionsContainer}>
-        {/* <View> */}
-        <CartQtyButton quantity={item.quantity} />
-        {/* </View> */}
+        <CartQtyButton quantity={item.quantity} itemId={item.id} />
         <View>
           <CustomButton textStyles={styles.deleteButtonTextStyles} style={styles.deleteButton}>
             Delete

@@ -1,32 +1,43 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import { Entypo, Feather } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
 
 import CustomIcon from '../CustomIcon';
 import Theme from '../../../constants/Theme';
+import { increaseQty } from '../../redux/actions/cart.actions';
 
-const CartQtyButton = ({ quantity, increaseQty, decreaseQty }) => {
+const CartQtyButton = ({ quantity, itemId }) => {
+  let TouchableComponent = TouchableOpacity;
+
+  Platform.OS === 'android' && Platform.Version >= 21
+    ? (TouchableComponent = TouchableNativeFeedback)
+    : null;
+
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
-      <View
+      <TouchableComponent
         style={{
           ...styles.increaseDecreaseContainer,
           borderRightWidth: 1,
           borderRightColor: '#999',
         }}>
         <Feather style={styles.button} size={20} name={quantity === 1 ? 'trash' : 'minus'} />
-      </View>
+      </TouchableComponent>
       <View style={styles.quantity}>
         <Text style={styles.quantityText}>{quantity}</Text>
       </View>
-      <View
+      <TouchableComponent
+        onPress={() => dispatch(increaseQty(itemId))}
         style={{
           ...styles.increaseDecreaseContainer,
           borderLeftWidth: 1,
           borderLeftColor: '#999',
         }}>
         <Entypo style={styles.button} size={20} name='plus' />
-      </View>
+      </TouchableComponent>
     </View>
   );
 };
@@ -48,7 +59,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 999,
+    zIndex: 5,
     backgroundColor: '#f0f0ef',
   },
   quantity: {

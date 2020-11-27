@@ -62,6 +62,7 @@ export default (state = initialState, action) => {
             currItem.images
           ),
         },
+        total: (state.total += currItem.price),
       };
 
     case cartActions.DECREASE_QTY:
@@ -80,6 +81,7 @@ export default (state = initialState, action) => {
             theItem.images
           ),
         },
+        total: (state.total -= theItem.price),
       };
 
     case cartActions.DELETE_ITEM:

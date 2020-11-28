@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+  console.log(state);
   switch (action.type) {
     case cartActions.ADD_TO_CART:
       const item = action.payload;
@@ -85,7 +86,6 @@ export default (state = initialState, action) => {
       };
 
     case cartActions.DELETE_ITEM:
-      const aItem = state.items[action.payload];
       const itemId = action.payload;
 
       const remakeState = () => {
@@ -97,7 +97,6 @@ export default (state = initialState, action) => {
             newStateItems.total += item.sum;
           }
         }
-        console.log(newStateItems);
         return newStateItems;
       };
 

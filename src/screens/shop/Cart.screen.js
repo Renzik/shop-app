@@ -88,7 +88,9 @@ const styles = StyleSheet.create({
   checkoutButton: {
     backgroundColor: '#FFBC47',
   },
-  itemList: {},
+  itemList: {
+    marginBottom: '30%',
+  },
 });
 
 export default Cart;

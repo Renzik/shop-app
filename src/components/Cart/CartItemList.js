@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 
 import CartItem from './CartItem';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -7,9 +7,11 @@ import CartItemList from '../../components/Cart/CartItemList';
 import CustomButton from '../../components/ProductDetail/CustomButton';
 
 const Cart = ({ navigation }) => {
+  let amountOfItems = 0;
   const cartTotal = useSelector(({ cart: { total } }) => total).toFixed(2);
   const cartItems = useSelector(({ cart: { items } }) => {
     const transformedItems = [];
+    // let amountOfItems = 0;
 
     for (const key in items) {
       const currItem = items[key];
@@ -21,17 +23,18 @@ const Cart = ({ navigation }) => {
         title: currItem.title,
         images: currItem.images,
       });
+      amountOfItems += currItem.quantity;
     }
     return transformedItems;
   });
-  const itemOrItems = cartItems.length === 1 ? 'item' : 'items';
+  const itemOrItems = amountOfItems === 1 ? 'item' : 'items';
 
   return (
     <View style={styles.container}>
       <View style={styles.br} />
       <View style={styles.cartDetails}>
         <Text style={styles.cartSummary}>
-          Subtotal ({cartItems.length} {itemOrItems}):{' '}
+          Subtotal ({amountOfItems} {itemOrItems}):{' '}
           <Text style={styles.cartSubtotal}>${cartTotal}</Text>
         </Text>
         <CustomButton style={styles.checkoutButton}>Checkout Cart</CustomButton>

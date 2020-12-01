@@ -1,7 +1,5 @@
 import { cartActions } from '../actions/cart.actions';
 import CartItem from '../../models/cart-item';
-import Cart from '../../screens/shop/Cart.screen';
-import { ActionSheetIOS } from 'react-native';
 
 const initialState = {
   items: {},
@@ -9,7 +7,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(state);
   switch (action.type) {
     case cartActions.ADD_TO_CART:
       const item = action.payload;

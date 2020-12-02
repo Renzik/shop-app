@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SearchBar from '../../components/SearchBar';
 import CartItemList from '../../components/Cart/CartItemList';
 import CustomButton from '../../components/ProductDetail/CustomButton';
+import { checkout } from '../../redux/actions/orders.actions';
 
 const Cart = ({ navigation }) => {
   let amountOfItems = 0;
@@ -27,6 +28,7 @@ const Cart = ({ navigation }) => {
     return transformedItems;
   });
   const itemOrItems = amountOfItems === 1 ? 'item' : 'items';
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
@@ -36,7 +38,11 @@ const Cart = ({ navigation }) => {
           Subtotal ({amountOfItems} {itemOrItems}):
           <Text style={styles.cartSubtotal}>${cartTotal}</Text>
         </Text>
-        <CustomButton style={styles.checkoutButton}>Checkout Cart</CustomButton>
+        <CustomButton
+          onPress={() => dispatch(checkout(cartItems, cartTotal))}
+          style={styles.checkoutButton}>
+          Checkout Cart
+        </CustomButton>
       </View>
       <View style={styles.thinBr} />
       <View style={styles.itemList}>

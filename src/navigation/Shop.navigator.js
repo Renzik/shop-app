@@ -4,7 +4,13 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Ionicons, MaterialIcons, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import {
+  Ionicons,
+  MaterialIcons,
+  AntDesign,
+  SimpleLineIcons,
+  FontAwesome,
+} from '@expo/vector-icons';
 
 import Theme from '../../constants/Theme';
 
@@ -12,6 +18,8 @@ import ProductDetail from '../screens/shop/ProductDetail.screen';
 import ProductsOverview from '../screens/shop/ProductsOverview.screen';
 import SearchResults from '../screens/shop/SearchResults.screen';
 import Cart from '../screens/shop/Cart.screen';
+import Orders from '../screens/shop/Orders.screen';
+import User from '../screens/user/User.screen';
 
 const defaultOptions = {
   headerStyle: {
@@ -62,12 +70,35 @@ const CartNavigator = createStackNavigator(
   { defaultNavigationOptions: defaultOptions }
 );
 
+const UserNavigator = createStackNavigator(
+  {
+    User: {
+      screen: User,
+    },
+    Orders: {
+      screen: Orders,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
+    },
+  },
+  { defaultNavigationOptions: defaultOptions }
+);
+
 const tabScreenConfig = {
   Products: {
     screen: ProductsNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return <SimpleLineIcons name='home' size={23} color={tabInfo.tintColor} />;
+      },
+    },
+  },
+  UserOptions: {
+    screen: UserNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return <FontAwesome name='user-o' size={23} color={tabInfo.tintColor} />;
       },
     },
   },

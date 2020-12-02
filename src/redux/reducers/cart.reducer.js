@@ -89,6 +89,8 @@ export default (state = initialState, action) => {
 
       delete itemsCopy[itemId];
 
+      console.log(product);
+      console.log(state.total);
       // const remakeState = () => {
       //   const newStateItems = { items: {}, total: 0 };
       //   for (const key in state.items) {
@@ -101,7 +103,7 @@ export default (state = initialState, action) => {
       //   return newStateItems;
       // };
 
-      return { ...state, items: itemsCopy, total: state.total - product.sum };
+      return { ...state, items: itemsCopy, total: state.total.toFixed(2) - product.sum };
 
     default:
       return state;

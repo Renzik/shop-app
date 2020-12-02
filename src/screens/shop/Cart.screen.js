@@ -33,7 +33,7 @@ const Cart = ({ navigation }) => {
       <View style={styles.br} />
       <View style={styles.cartDetails}>
         <Text style={styles.cartSummary}>
-          Subtotal ({amountOfItems} {itemOrItems}):{' '}
+          Subtotal ({amountOfItems} {itemOrItems}):
           <Text style={styles.cartSubtotal}>${cartTotal}</Text>
         </Text>
         <CustomButton style={styles.checkoutButton}>Checkout Cart</CustomButton>

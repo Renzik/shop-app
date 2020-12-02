@@ -11,7 +11,6 @@ const Cart = ({ navigation }) => {
   const cartTotal = useSelector(({ cart: { total } }) => total).toFixed(2);
   const cartItems = useSelector(({ cart: { items } }) => {
     const transformedItems = [];
-    // let amountOfItems = 0;
 
     for (const key in items) {
       const currItem = items[key];

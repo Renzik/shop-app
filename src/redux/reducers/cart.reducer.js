@@ -84,20 +84,24 @@ export default (state = initialState, action) => {
 
     case cartActions.DELETE_ITEM:
       const itemId = action.payload;
+      const itemsCopy = { ...state.items };
+      const product = itemsCopy[itemId];
 
-      const remakeState = () => {
-        const newStateItems = { items: {}, total: 0 };
-        for (const key in state.items) {
-          const item = state.items[key];
-          if (key !== itemId) {
-            newStateItems.items[key] = item;
-            newStateItems.total += item.sum;
-          }
-        }
-        return newStateItems;
-      };
+      delete itemsCopy[itemId];
 
-      return remakeState();
+      // const remakeState = () => {
+      //   const newStateItems = { items: {}, total: 0 };
+      //   for (const key in state.items) {
+      //     const item = state.items[key];
+      //     if (key !== itemId) {
+      //       newStateItems.items[key] = item;
+      //       newStateItems.total += item.sum;
+      //     }
+      //   }
+      //   return newStateItems;
+      // };
+
+      return { ...state, items: itemsCopy, total: state.total - product.sum };
 
     default:
       return state;

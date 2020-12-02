@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, TouchableNativeFeedback } fro
 import { Entypo, Feather } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 
-import CustomIcon from '../CustomIcon';
 import Theme from '../../../constants/Theme';
 import { increaseQty, decreaseQty, deleteItem } from '../../redux/actions/cart.actions';
 

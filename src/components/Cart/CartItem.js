@@ -101,13 +101,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   deleteButton: {
-    // width: '18%',
-    // height: '50%',
+    elevation: 0,
   },
   deleteButtonTextStyles: {
     fontSize: 12,
-    textAlignVertical: 'center',
-    textAlign: 'center',
   },
 });
 

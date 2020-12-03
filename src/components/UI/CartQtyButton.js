@@ -14,12 +14,6 @@ import Theme from '../../../constants/Theme';
 import { increaseQty, decreaseQty, deleteItem } from '../../redux/actions/cart.actions';
 
 const CartQtyButton = ({ quantity, itemId }) => {
-  let TouchableComponent = TouchableOpacity;
-
-  Platform.OS === 'android' && Platform.Version >= 21
-    ? (TouchableComponent = TouchableNativeFeedback)
-    : null;
-
   const dispatch = useDispatch();
 
   const decreaseOrDelete = id =>
@@ -27,7 +21,7 @@ const CartQtyButton = ({ quantity, itemId }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableComponent
+      <TouchableOpacity
         onPress={() => decreaseOrDelete(itemId)}
         style={{
           ...styles.increaseDecreaseContainer,
@@ -35,11 +29,11 @@ const CartQtyButton = ({ quantity, itemId }) => {
           borderRightColor: '#999',
         }}>
         <Feather style={styles.button} size={20} name={quantity === 1 ? 'trash' : 'minus'} />
-      </TouchableComponent>
+      </TouchableOpacity>
       <View style={styles.quantity}>
         <Text style={styles.quantityText}>{quantity}</Text>
       </View>
-      <TouchableComponent
+      <TouchableOpacity
         onPress={() => dispatch(increaseQty(itemId))}
         style={{
           ...styles.increaseDecreaseContainer,
@@ -47,7 +41,7 @@ const CartQtyButton = ({ quantity, itemId }) => {
           borderLeftColor: '#999',
         }}>
         <Entypo style={styles.button} size={20} name='plus' />
-      </TouchableComponent>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -69,7 +63,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 5,
+    // zIndex: 5,
     backgroundColor: '#f0f0ef',
   },
   quantity: {

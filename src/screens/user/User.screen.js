@@ -17,13 +17,40 @@ const User = ({ navigation }) => {
           <Text style={styles.userSaluteText}>Hello there,</Text>
           <Text style={{ ...styles.userSaluteText, fontFamily: 'poppins-bold' }}>User</Text>
         </View>
-        <View style={styles.imageContainer}>
+        <View style={styles.userImage}>
           <Image
             style={{ width: 60, height: 60 }}
             source={require('../../../assets/default.png')}
           />
         </View>
       </LinearGradient>
+      <View style={styles.middleContainer}>
+        <View style={styles.yourOrders}>
+          <Text>Your Orders</Text>
+          <LinearGradient
+            style={styles.yourOrdersBuyAgainImageContainer}
+            colors={['rgba(255,192,81,0.70068506006006)', 'rgba(251,171,126,0.70068506006006)']}>
+            <Image
+              style={{ width: 125, height: 125 }}
+              source={require('../../../assets/orders-box.png')}
+            />
+          </LinearGradient>
+        </View>
+        <View style={styles.buyAgain}>
+          <Text>Your Orders</Text>
+          <LinearGradient
+            style={styles.yourOrdersBuyAgainImageContainer}
+            colors={[
+              'rgba(251,171,126,0.7967811561561562)',
+              'rgba(255,192,81,0.7667511261261262)',
+            ]}>
+            <Image
+              style={{ width: 125, height: 125 }}
+              source={require('../../../assets/orders-box.png')}
+            />
+          </LinearGradient>
+        </View>
+      </View>
       {/* <Button title='orders' onPress={() => navigation.navigate('Orders')} /> */}
     </View>
   );
@@ -66,7 +93,7 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins-regular',
     fontSize: 24,
   },
-  imageContainer: {
+  userImage: {
     borderWidth: 3,
     borderRadius: 50,
     borderColor: '#fff',
@@ -78,6 +105,19 @@ const styles = StyleSheet.create({
   },
   logo: {
     color: 'black',
+  },
+  middleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  yourOrdersBuyAgainImageContainer: {
+    width: 200,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  yourOrders: {
+    borderWidth: 1,
   },
 });
 

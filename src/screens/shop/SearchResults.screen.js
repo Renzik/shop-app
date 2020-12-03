@@ -25,6 +25,10 @@ const SearchResults = ({ navigation }) => {
       </View>
       <SearchResultsItemList itemData={filteredItem} navigation={navigation} />
     </>
+  ) : searchInput === 'newSearch' ? (
+    <View style={styles.container}>
+      <Text style={styles.text}>Search for your favorite curtains</Text>
+    </View>
   ) : (
     <View style={styles.container}>
       <Text style={styles.text}>Apologies, we couldn't find any product related to</Text>

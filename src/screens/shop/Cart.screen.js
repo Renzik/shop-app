@@ -54,7 +54,7 @@ const Cart = ({ navigation }) => {
 
 Cart.navigationOptions = ({ navigation }) => {
   return {
-    headerTitle: 'All Products',
+    // headerTitle: 'All Products',
     headerRight: () => (
       <SearchBar style={{ width: Dimensions.get('screen').width * 0.95 }} navigation={navigation} />
     ),

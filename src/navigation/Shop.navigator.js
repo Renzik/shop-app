@@ -25,6 +25,7 @@ const defaultOptions = {
   headerStyle: {
     backgroundColor: Theme.orange,
     height: Platform.OS === 'ios' ? 75 : 80,
+    shadowColor: 'transparent',
   },
   headerTintColor: Theme.black,
   headerTitleStyle: {
@@ -77,6 +78,12 @@ const UserNavigator = createStackNavigator(
     },
     Orders: {
       screen: Orders,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
+    },
+    SearchResults: {
+      screen: SearchResults,
       navigationOptions: {
         safeAreaInsets: { bottom: 0, top: 23 },
       },

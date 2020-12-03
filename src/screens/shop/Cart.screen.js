@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SearchBar from '../../components/SearchBar';
@@ -54,7 +54,6 @@ const Cart = ({ navigation }) => {
 
 Cart.navigationOptions = ({ navigation }) => {
   return {
-    // headerTitle: 'All Products',
     headerRight: () => (
       <SearchBar style={{ width: Dimensions.get('screen').width * 0.95 }} navigation={navigation} />
     ),
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cartDetails: {
-    height: '18%',
+    height: Platform.OS === 'android' ? '22%' : '18%',
     paddingVertical: 10,
   },
   cartSummary: {

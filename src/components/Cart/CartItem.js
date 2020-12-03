@@ -17,16 +17,16 @@ import CartQtyButton from '../UI/CartQtyButton';
 import { deleteItem } from '../../redux/actions/cart.actions';
 
 const CartItem = ({ item, onSelect }) => {
-  let TouchableComponent = TouchableOpacity;
+  // let TouchableComponent = TouchableOpacity;
 
-  Platform.OS === 'android' && Platform.Version >= 21
-    ? (TouchableComponent = TouchableNativeFeedback)
-    : null;
+  // Platform.OS === 'android' && Platform.Version >= 21
+  //   ? (TouchableComponent = TouchableNativeFeedback)
+  //   : null;
 
   const dispatch = useDispatch();
 
   return (
-    <TouchableComponent style={styles.touchableContainer} onPress={onSelect}>
+    <TouchableOpacity style={styles.touchableContainer} onPress={onSelect}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image resizeMode='contain' style={styles.image} source={{ uri: item.images[0] }} />
@@ -53,7 +53,7 @@ const CartItem = ({ item, onSelect }) => {
           </CustomButton>
         </View>
       </View>
-    </TouchableComponent>
+    </TouchableOpacity>
   );
 };
 

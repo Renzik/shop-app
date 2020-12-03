@@ -20,7 +20,7 @@ const User = ({ navigation }) => {
         </View>
         <View style={styles.userImage}>
           <Image
-            style={{ width: 60, height: 60 }}
+            style={{ width: '100%', height: '100%' }}
             source={require('../../../assets/default.png')}
           />
         </View>
@@ -54,6 +54,7 @@ const User = ({ navigation }) => {
           </LinearGradient>
         </View>
       </View>
+      <View style={styles.br} />
       {/* <Button title='orders' onPress={() => navigation.navigate('Orders')} /> */}
     </View>
   );
@@ -96,10 +97,13 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins-regular',
     fontSize: 24,
     color: '#333',
+    lineHeight: 32,
   },
   userImage: {
     borderWidth: 3,
-    borderRadius: 50,
+    borderRadius: 32.5,
+    height: 65,
+    width: 65,
     borderColor: '#fff',
     backgroundColor: '#ccc',
     overflow: 'hidden',
@@ -129,6 +133,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
     paddingBottom: 15,
+  },
+  br: {
+    borderTopWidth: 6,
+    borderTopColor: '#ededed',
+    width: Dimensions.get('screen').width,
+    alignSelf: 'center',
   },
 });
 

@@ -26,6 +26,7 @@ const defaultOptions = {
     backgroundColor: Theme.orange,
     height: Platform.OS === 'ios' ? 75 : 80,
     shadowColor: 'transparent',
+    elevation: 0,
   },
   headerTintColor: Theme.black,
   headerTitleStyle: {

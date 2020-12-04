@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import Orders from '../shop/Orders.screen';
+import Orders from '../orders/Orders.screen';
 import CustomHeaderButton from '../../components/UI/CustomHeaderButton';
 import SearchBar from '../../components/SearchBar';
 import { TouchableOpacity } from 'react-native-gesture-handler';

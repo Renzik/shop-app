@@ -31,7 +31,7 @@ const OrderItem = ({ navigation, itemData }) => {
           </Text>
           <Text style={styles.total}>${totalAmount}</Text>
         </View>
-        <AntDesign name='right' color='#999999' size={23} />
+        <AntDesign name='right' color='#777' size={23} />
       </View>
     </TouchableComponent>
   );
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   total: {
     fontFamily: 'poppins-regular',
     fontSize: 16,
-    color: '#999999',
+    color: '#777',
   },
 });
 

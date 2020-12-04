@@ -6,23 +6,69 @@ import {
   TouchableNativeFeedback,
   TouchableOpacity,
   Platform,
+  Image,
 } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 const OrderItem = ({ navigation, itemData }) => {
   let TouchableComponent = TouchableOpacity;
+  const { readableDate, totalAmount, items } = itemData;
+
+  console.log(itemData.readableDate);
 
   if (Platform.OS === 'android' && Platform.Version >= 21)
     TouchableComponent = TouchableNativeFeedback;
 
   return (
-    <TouchableComponent onPress={() => console.log('item clicked')}>
-      <View>
-        <Text></Text>
+    <TouchableComponent style={styles.container} onPress={() => console.log('item clicked')}>
+      <View style={styles.orderContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{ uri: items[0].images[0] }} />
+        </View>
+        <View style={styles.orderDetails}>
+          <Text numberOfLines={2} style={styles.date}>
+            {readableDate}
+          </Text>
+          <Text style={styles.total}>${totalAmount}</Text>
+        </View>
+        <AntDesign name='right' color='#999999' size={23} />
       </View>
     </TouchableComponent>
   );
 };
 
-export default OrderItem;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  orderContainer: {
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  imageContainer: {
+    width: 100,
+    height: 100,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  orderDetails: {
+    alignItems: 'center',
+  },
+  date: {
+    fontFamily: 'poppins-bold',
+    fontSize: 16,
+  },
+  total: {
+    fontFamily: 'poppins-regular',
+    fontSize: 16,
+    color: '#999999',
+  },
+});
 
-const styles = StyleSheet.create({});
+export default OrderItem;

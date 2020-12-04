@@ -14,8 +14,6 @@ const OrderItem = ({ navigation, itemData }) => {
   let TouchableComponent = TouchableOpacity;
   const { readableDate, totalAmount, items } = itemData;
 
-  console.log(itemData.readableDate);
-
   if (Platform.OS === 'android' && Platform.Version >= 21)
     TouchableComponent = TouchableNativeFeedback;
 
@@ -40,14 +38,14 @@ const OrderItem = ({ navigation, itemData }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
   },
   orderContainer: {
     paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
   imageContainer: {
     width: 100,

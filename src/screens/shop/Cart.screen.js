@@ -6,6 +6,7 @@ import SearchBar from '../../components/SearchBar';
 import CartItemList from '../../components/Cart/CartItemList';
 import CustomButton from '../../components/ProductDetail/CustomButton';
 import { checkout } from '../../redux/actions/orders.actions';
+import { clearCart } from '../../redux/actions/cart.actions';
 
 const Cart = ({ navigation }) => {
   let amountOfItems = 0;
@@ -30,6 +31,11 @@ const Cart = ({ navigation }) => {
   const itemOrItems = amountOfItems === 1 ? 'item' : 'items';
   const dispatch = useDispatch();
 
+  const dispatchAndClearCart = () => {
+    dispatch(clearCart());
+    dispatch(checkout(cartItems, cartTotal));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.br} />
@@ -38,9 +44,7 @@ const Cart = ({ navigation }) => {
           Subtotal ({amountOfItems} {itemOrItems}):
           <Text style={styles.cartSubtotal}>${cartTotal}</Text>
         </Text>
-        <CustomButton
-          onPress={() => dispatch(checkout(cartItems, cartTotal))}
-          style={styles.checkoutButton}>
+        <CustomButton onPress={dispatchAndClearCart} style={styles.checkoutButton}>
           Checkout Cart
         </CustomButton>
       </View>

@@ -3,6 +3,7 @@ export const cartActions = {
   INCREASE_QTY: 'INCREASE_QTY',
   DECREASE_QTY: 'DECREASE_QTY',
   DELETE_ITEM: 'DELETE_ITEM',
+  CLEAR_CART: 'CLEAR_CART',
 };
 
 export const addToCart = (product, qty) => ({
@@ -24,4 +25,8 @@ export const decreaseQty = id => ({
 export const deleteItem = id => ({
   type: cartActions.DELETE_ITEM,
   payload: id,
+});
+
+export const clearCart = () => ({
+  type: cartActions.CLEAR_CART,
 });

@@ -105,6 +105,8 @@ export default (state = initialState, action) => {
 
       return { ...state, items: itemsCopy, total: state.total.toFixed(2) - product.sum };
 
+    case cartActions.CLEAR_CART:
+      return { ...state, items: {}, total: 0 };
     default:
       return state;
   }

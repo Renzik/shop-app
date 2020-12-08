@@ -39,14 +39,16 @@ const OrdersFilter = ({ navigation }) => {
           </Text>
         </View>
         <View style={styles.rightSubHeader}>
-          {/* <Button color='orange' title='Apply' disabled={isButtonDisabled} /> */}
-          <CustomButton style={styles.applyButton} textStyles={styles.applyButtonText}>
+          <CustomButton
+            style={styles.applyButton}
+            disabled={isButtonDisabled}
+            textStyles={styles.applyButtonText}>
             Apply
           </CustomButton>
         </View>
       </View>
       <View style={styles.filtersContainer}>
-        <RadioButton options={options} />
+        <RadioButton onPress={() => setIsButtonDisabled(false)} options={options} />
       </View>
     </View>
   );
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
   },
   subHeader: {
     borderBottomWidth: 1,
-    marginTop: 5,
+    paddingVertical: 10,
     paddingHorizontal: 5,
     flexDirection: 'row',
     alignItems: 'center',
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rightSubHeader: {
-    height: 50,
+    height: 44,
   },
   filtersContainer: {
     // backgroundColor: 'black',
@@ -97,13 +99,12 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   applyButton: {
-    borderWidth: 1,
-    backgroundColor: 'red',
-    // height: 50,
+    // borderWidth: 1,
+    backgroundColor: '#FF9E00',
   },
   applyButtonText: {
     // fontSize: 16,
     // fontFamily: 'poppins-regular',
-    color: 'white',
+    color: 'black',
   },
 });

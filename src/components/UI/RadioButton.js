@@ -2,7 +2,7 @@ import { Fontisto } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
-const RadioButton = ({ options }) => {
+const RadioButton = ({ options, onPress }) => {
   const [selectedRb, setSelectedRb] = useState('3 months');
 
   return (
@@ -11,7 +11,12 @@ const RadioButton = ({ options }) => {
         return (
           <View key={option.key} style={styles.container}>
             <Text style={styles.text}>{option.text}</Text>
-            <TouchableOpacity onPress={() => setSelectedRb(option.key)} style={styles.circle}>
+            <TouchableOpacity
+              onPress={() => {
+                setSelectedRb(option.key);
+                onPress();
+              }}
+              style={styles.circle}>
               {selectedRb === option.key ? <View style={styles.checkedCircle} /> : null}
             </TouchableOpacity>
           </View>

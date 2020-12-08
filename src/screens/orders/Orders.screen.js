@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 
 import OrderItem from '../../components/Orders/OrderItem';
@@ -43,25 +43,28 @@ const Orders = ({ navigation }) => {
 
   return (
     <View>
-      <View style={styles.ordersScreenTopContainer}>
-        <Text style={styles.title}>Your Orders</Text>
-        <View style={styles.filterContainer}>
-          <Text onPress={goToFilters} style={styles.filterText}>
-            Filter
-          </Text>
-          <AntDesign onPress={goToFilters} name='right' color='#777' size={20} />
-        </View>
-      </View>
-      <View style={styles.ordersTimeContainer}>
-        <Text style={styles.ordersTimeTitle}>All orders</Text>
-      </View>
-
       <View>
         {orders.length ? (
           <FlatList
             data={orders}
             keyExtractor={item => item.id}
             renderItem={itemData => <OrderItem itemData={itemData.item} navigation={navigation} />}
+            ListHeaderComponent={
+              <>
+                <View style={styles.ordersScreenTopContainer}>
+                  <Text style={styles.title}>Your Orders</Text>
+                  <View style={styles.filterContainer}>
+                    <Text onPress={goToFilters} style={styles.filterText}>
+                      Filter
+                    </Text>
+                    <AntDesign onPress={goToFilters} name='right' color='#777' size={20} />
+                  </View>
+                </View>
+                <View style={styles.ordersTimeContainer}>
+                  <Text style={styles.ordersTimeTitle}>All orders</Text>
+                </View>
+              </>
+            }
           />
         ) : (
           <View style={{ alignItems: 'center', paddingVertical: 50 }}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Platform, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SearchBar from '../../components/SearchBar';
@@ -7,6 +7,7 @@ import CartItemList from '../../components/Cart/CartItemList';
 import CustomButton from '../../components/ProductDetail/CustomButton';
 import { checkout } from '../../redux/actions/orders.actions';
 import { clearCart } from '../../redux/actions/cart.actions';
+import CartItem from '../../components/Cart/CartItem';
 
 const Cart = ({ navigation }) => {
   let amountOfItems = 0;
@@ -28,6 +29,21 @@ const Cart = ({ navigation }) => {
     }
     return transformedItems;
   });
+
+  const renderCartItem = ({ item }) => {
+    return (
+      <CartItem
+        item={item}
+        onSelect={() => {
+          navigation.navigate({
+            routeName: 'ProductDetail',
+            params: { itemId: item.id, itemName: item.title },
+          });
+        }}
+      />
+    );
+  };
+
   const itemOrItems = amountOfItems === 1 ? 'item' : 'items';
   const dispatch = useDispatch();
 
@@ -37,21 +53,28 @@ const Cart = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.br} />
-      <View style={styles.cartDetails}>
-        <Text style={styles.cartSummary}>
-          Subtotal ({amountOfItems} {itemOrItems}):
-          <Text style={styles.cartSubtotal}>${cartTotal}</Text>
-        </Text>
-        <CustomButton onPress={dispatchAndClearCart} style={styles.checkoutButton}>
-          Checkout Cart
-        </CustomButton>
-      </View>
-      <View style={styles.thinBr} />
-      <View style={styles.itemList}>
-        <CartItemList cartItems={cartItems} navigation={navigation} />
-      </View>
+    <View style={{ backgroundColor: '#fff', flex: 1 }}>
+      <FlatList
+        ListHeaderComponent={
+          <>
+            <View style={styles.container}>
+              <View style={styles.br} />
+              <View style={styles.cartDetails}>
+                <Text style={styles.cartSummaryText}>
+                  Subtotal ({amountOfItems} {itemOrItems}):
+                  <Text style={styles.cartSubtotal}> ${cartTotal}</Text>
+                </Text>
+                <CustomButton onPress={dispatchAndClearCart} style={styles.checkoutButton}>
+                  Checkout Cart
+                </CustomButton>
+              </View>
+              <View style={styles.thinBr} />
+            </View>
+          </>
+        }
+        data={cartItems}
+        renderItem={renderCartItem}
+      />
     </View>
   );
 };
@@ -67,27 +90,23 @@ Cart.navigationOptions = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    backgroundColor: '#fff',
+    paddingTop: 15,
   },
   br: {
-    borderTopWidth: 6,
-    borderTopColor: '#ededed',
-    width: Dimensions.get('screen').width,
-    alignSelf: 'center',
+    borderWidth: 4,
+    borderColor: '#ededed',
   },
   thinBr: {
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
+    borderWidth: 0.5,
+    borderColor: '#ccc',
     width: Dimensions.get('screen').width,
     alignSelf: 'center',
-    marginBottom: 10,
   },
   cartDetails: {
-    height: Platform.OS === 'android' ? '22%' : '18%',
-    paddingVertical: 10,
+    padding: 15,
+    width: Dimensions.get('screen').width,
   },
-  cartSummary: {
+  cartSummaryText: {
     fontFamily: 'poppins-regular',
     paddingBottom: 20,
   },
@@ -98,9 +117,6 @@ const styles = StyleSheet.create({
   },
   checkoutButton: {
     backgroundColor: '#FFBC47',
-  },
-  itemList: {
-    marginBottom: '30%',
   },
 });
 

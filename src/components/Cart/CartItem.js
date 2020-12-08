@@ -59,7 +59,7 @@ const CartItem = ({ item, onSelect }) => {
 
 const styles = StyleSheet.create({
   touchableContainer: {
-    paddingBottom: 10,
+    padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },

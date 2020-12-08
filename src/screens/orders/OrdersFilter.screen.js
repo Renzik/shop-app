@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { AntDesign } from '@expo/vector-icons';
 
 import SearchBar from '../../components/SearchBar';
 import RadioButton from '../../components/UI/RadioButton';
+import CustomButton from '../../components/ProductDetail/CustomButton';
 
 const OrdersFilter = ({ navigation }) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   const options = [
     {
       key: '30 days',
@@ -28,11 +32,18 @@ const OrdersFilter = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.subHeader}>
-        <View>
-          {/* icon */}
-          <Text>Back</Text>
+        <View style={styles.leftSubHeader}>
+          <AntDesign onPress={() => navigation.goBack()} name='left' color='#777' size={15} />
+          <Text onPress={() => navigation.goBack()} style={styles.back}>
+            Back
+          </Text>
         </View>
-        <View>{/* Apply button */}</View>
+        <View style={styles.rightSubHeader}>
+          {/* <Button color='orange' title='Apply' disabled={isButtonDisabled} /> */}
+          <CustomButton style={styles.applyButton} textStyles={styles.applyButtonText}>
+            Apply
+          </CustomButton>
+        </View>
       </View>
       <View style={styles.filtersContainer}>
         <RadioButton options={options} />
@@ -61,9 +72,38 @@ export default OrdersFilter;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+  },
+  subHeader: {
+    borderBottomWidth: 1,
+    marginTop: 5,
+    paddingHorizontal: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  leftSubHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rightSubHeader: {
+    height: 50,
   },
   filtersContainer: {
     // backgroundColor: 'black',
+  },
+  back: {
+    fontFamily: 'poppins-bold',
+    fontSize: 16,
+    marginLeft: 5,
+  },
+  applyButton: {
+    borderWidth: 1,
+    backgroundColor: 'red',
+    // height: 50,
+  },
+  applyButtonText: {
+    // fontSize: 16,
+    // fontFamily: 'poppins-regular',
+    color: 'white',
   },
 });

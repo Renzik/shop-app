@@ -15,6 +15,8 @@ const CustomButton = ({ onPress, style, children, textStyles }) => {
     ? (TouchableComponent = TouchableNativeFeedback)
     : null;
 
+  console.log(textStyles);
+
   return (
     <TouchableComponent onPress={onPress} style={styles.container}>
       <View style={{ ...styles.innerContainer, ...style }}>

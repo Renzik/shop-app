@@ -11,13 +11,17 @@ import { AntDesign } from '@expo/vector-icons';
 const Orders = ({ navigation }) => {
   const orders = useSelector(({ orders: { orders } }) => orders);
 
+  const goToFilters = () => navigation.navigate('OrdersFilters');
+
   return (
     <View>
       <View style={styles.ordersScreenTopContainer}>
         <Text style={styles.title}>Your Orders</Text>
         <View style={styles.filterContainer}>
-          <Text style={styles.filterText}>Filter</Text>
-          <AntDesign name='right' color='#777' size={20} />
+          <Text onPress={goToFilters} style={styles.filterText}>
+            Filter
+          </Text>
+          <AntDesign onPress={goToFilters} name='right' color='#777' size={20} />
         </View>
       </View>
 

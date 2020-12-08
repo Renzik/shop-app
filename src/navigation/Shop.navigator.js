@@ -20,7 +20,7 @@ import SearchResults from '../screens/shop/SearchResults.screen';
 import Cart from '../screens/shop/Cart.screen';
 import Orders from '../screens/orders/Orders.screen';
 import User from '../screens/user/User.screen';
-import OrdersFilters from '../screens/orders/Orders.screen';
+import OrdersFilters from '../screens/orders/OrdersFilter.screen';
 
 const defaultOptions = {
   headerStyle: {
@@ -84,14 +84,14 @@ const UserNavigator = createStackNavigator(
         safeAreaInsets: { bottom: 0, top: 23 },
       },
     },
+    OrdersFilters: {
+      screen: OrdersFilters,
+    },
     SearchResults: {
       screen: SearchResults,
       navigationOptions: {
         safeAreaInsets: { bottom: 0, top: 23 },
       },
-    },
-    OrdersFilters: {
-      screen: OrdersFilters,
     },
   },
   { defaultNavigationOptions: defaultOptions }

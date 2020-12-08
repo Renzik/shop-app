@@ -52,6 +52,9 @@ const Orders = ({ navigation }) => {
           <AntDesign onPress={goToFilters} name='right' color='#777' size={20} />
         </View>
       </View>
+      <View style={styles.ordersTimeContainer}>
+        <Text style={styles.ordersTimeTitle}>Past three months</Text>
+      </View>
 
       <View>
         {orders.length ? (
@@ -92,11 +95,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 5,
     paddingVertical: 10,
     paddingHorizontal: 50,
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
   },
   title: {
     fontFamily: 'poppins-bold',
@@ -116,5 +116,15 @@ const styles = StyleSheet.create({
   filterText: {
     fontFamily: 'poppins-regular',
     fontSize: 16,
+  },
+  ordersTimeContainer: {
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#ccc',
+    paddingVertical: 5,
+  },
+  ordersTimeTitle: {
+    fontFamily: 'poppins-regular',
+    color: '#555',
   },
 });

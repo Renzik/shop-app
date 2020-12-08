@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     height: 44,
   },
   filtersContainer: {
-    // backgroundColor: 'black',
+    // padding: 10,
   },
   back: {
     fontFamily: 'poppins-bold',

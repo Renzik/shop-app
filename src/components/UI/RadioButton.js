@@ -1,6 +1,6 @@
 import { Fontisto } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Dimensions } from 'react-native';
 
 const RadioButton = ({ options, onPress, setSelectedRb, selectedRb }) => {
   return (
@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 35,
+    marginBottom: 25,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    width: Dimensions.get('screen').width,
   },
   circle: {
     height: 20,

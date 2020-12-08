@@ -51,6 +51,9 @@ const OrdersFilter = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.filtersContainer}>
+        <View style={styles.filtersTitleContainer}>
+          <Text style={{ fontFamily: 'poppins-bold', color: '#333' }}>FILTER BY ORDER DATE</Text>
+        </View>
         <RadioButton
           selectedRb={selectedRb}
           setSelectedRb={setSelectedRb}
@@ -85,6 +88,7 @@ const styles = StyleSheet.create({
   },
   subHeader: {
     borderBottomWidth: 1,
+    borderBottomColor: '#999',
     paddingVertical: 10,
     paddingHorizontal: 5,
     flexDirection: 'row',
@@ -114,5 +118,12 @@ const styles = StyleSheet.create({
     // fontSize: 16,
     // fontFamily: 'poppins-regular',
     color: 'black',
+  },
+  filtersTitleContainer: {
+    backgroundColor: '#ECECEC',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    paddingHorizontal: 10,
   },
 });

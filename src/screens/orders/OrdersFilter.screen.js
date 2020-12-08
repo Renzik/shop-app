@@ -9,6 +9,8 @@ import CustomButton from '../../components/ProductDetail/CustomButton';
 
 const OrdersFilter = ({ navigation }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [selectedRb, setSelectedRb] = useState('3 months');
+  const filterFunc = navigation.getParam('filterFunc');
 
   const options = [
     {
@@ -42,13 +44,19 @@ const OrdersFilter = ({ navigation }) => {
           <CustomButton
             style={styles.applyButton}
             disabled={isButtonDisabled}
-            textStyles={styles.applyButtonText}>
+            textStyles={styles.applyButtonText}
+            onPress={() => filterFunc(selectedRb)}>
             Apply
           </CustomButton>
         </View>
       </View>
       <View style={styles.filtersContainer}>
-        <RadioButton onPress={() => setIsButtonDisabled(false)} options={options} />
+        <RadioButton
+          selectedRb={selectedRb}
+          setSelectedRb={setSelectedRb}
+          onPress={() => setIsButtonDisabled()}
+          options={options}
+        />
       </View>
     </View>
   );

@@ -7,11 +7,39 @@ import { useSelector } from 'react-redux';
 import OrderItem from '../../components/Orders/OrderItem';
 import SearchBar from '../../components/SearchBar';
 import { AntDesign } from '@expo/vector-icons';
+// import OrdersFilterResults from './OrdersFilterResults.screen';
 
 const Orders = ({ navigation }) => {
   const orders = useSelector(({ orders: { orders } }) => orders);
 
-  const goToFilters = () => navigation.navigate('OrdersFilters');
+  const filterFunc = filterConfig => {
+    let filteredOrders;
+
+    if (filterConfig === '30 days') {
+      const today = new Date();
+      const last30Days = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
+      filteredOrders = orders.filter(order => order.date <= today && order.date >= last30Days);
+    }
+    if (filterConfig === '3 months') {
+      const today = new Date();
+      const last30Days = new Date(new Date().getTime() - 90 * 24 * 60 * 60 * 1000);
+      filteredOrders = orders.filter(order => order.date <= today && order.date >= last30Days);
+    }
+    if (filterConfig === '2020') {
+      filteredOrders = orders.filter(order => order.readableDate.includes('2020'));
+    }
+    if (filterConfig === '2019') {
+      filteredOrders = orders.filter(order => order.readableDate.includes('2019'));
+    }
+
+    navigation.navigate({
+      routeName: 'OrdersFilterResults',
+      params: { filteredOrders: filteredOrders, filterTitle: filterConfig },
+    });
+  };
+
+  const goToFilters = () =>
+    navigation.navigate({ routeName: 'OrdersFilters', params: { filterFunc: filterFunc } });
 
   return (
     <View>
@@ -26,11 +54,17 @@ const Orders = ({ navigation }) => {
       </View>
 
       <View>
-        <FlatList
-          data={orders}
-          keyExtractor={item => item.id}
-          renderItem={itemData => <OrderItem itemData={itemData.item} navigation={navigation} />}
-        />
+        {orders.length ? (
+          <FlatList
+            data={orders}
+            keyExtractor={item => item.id}
+            renderItem={itemData => <OrderItem itemData={itemData.item} navigation={navigation} />}
+          />
+        ) : (
+          <View style={{ alignItems: 'center', paddingVertical: 50 }}>
+            <Text style={{ color: '#888' }}>NO ORDERS YET</Text>
+          </View>
+        )}
       </View>
     </View>
   );

@@ -15,11 +15,19 @@ const OrdersFilterResults = ({ navigation }) => {
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
       </View>
-      <FlatList
-        data={orders}
-        keyExtractor={item => item.id}
-        renderItem={itemData => <OrderItem itemData={itemData.item} navigation={navigation} />}
-      />
+      <View>
+        {orders.length ? (
+          <FlatList
+            data={orders}
+            keyExtractor={item => item.id}
+            renderItem={itemData => <OrderItem itemData={itemData.item} navigation={navigation} />}
+          />
+        ) : (
+          <View style={{ alignItems: 'center', paddingVertical: 50 }}>
+            <Text style={{ color: '#888', fontSize: 16 }}>No orders from this date</Text>
+          </View>
+        )}
+      </View>
     </View>
   );
 };

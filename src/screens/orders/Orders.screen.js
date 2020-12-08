@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import OrderItem from '../../components/Orders/OrderItem';
 import SearchBar from '../../components/SearchBar';
 import { AntDesign } from '@expo/vector-icons';
-// import OrdersFilterResults from './OrdersFilterResults.screen';
 
 const Orders = ({ navigation }) => {
   const orders = useSelector(({ orders: { orders } }) => orders);
@@ -15,6 +14,7 @@ const Orders = ({ navigation }) => {
   const filterFunc = filterConfig => {
     let filteredOrders;
 
+    if (filterConfig === 'All') filteredOrders = orders;
     if (filterConfig === '30 days') {
       const today = new Date();
       const last30Days = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
@@ -53,7 +53,7 @@ const Orders = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.ordersTimeContainer}>
-        <Text style={styles.ordersTimeTitle}>Past three months</Text>
+        <Text style={styles.ordersTimeTitle}>All orders</Text>
       </View>
 
       <View>

@@ -9,10 +9,14 @@ import CustomButton from '../../components/ProductDetail/CustomButton';
 
 const OrdersFilter = ({ navigation }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [selectedRb, setSelectedRb] = useState('3 months');
+  const [selectedRb, setSelectedRb] = useState('All');
   const filterFunc = navigation.getParam('filterFunc');
 
   const options = [
+    {
+      key: 'All',
+      text: 'All orders',
+    },
     {
       key: '30 days',
       text: 'Last 30 days',
@@ -83,9 +87,6 @@ OrdersFilter.navigationOptions = ({ navigation }) => ({
 export default OrdersFilter;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   subHeader: {
     borderBottomWidth: 1,
     borderBottomColor: '#999',
@@ -102,21 +103,15 @@ const styles = StyleSheet.create({
   rightSubHeader: {
     height: 44,
   },
-  filtersContainer: {
-    // padding: 10,
-  },
   back: {
     fontFamily: 'poppins-bold',
     fontSize: 16,
     marginLeft: 5,
   },
   applyButton: {
-    // borderWidth: 1,
     backgroundColor: '#FF9E00',
   },
   applyButtonText: {
-    // fontSize: 16,
-    // fontFamily: 'poppins-regular',
     color: 'black',
   },
   filtersTitleContainer: {

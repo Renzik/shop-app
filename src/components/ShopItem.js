@@ -11,7 +11,7 @@ import {
 
 import Theme from '../../constants/Theme';
 
-const ShopItem = ({ itemData, onSelect }) => {
+const ShopItem = ({ itemData, onSelect, children }) => {
   let TouchableComponent = TouchableOpacity;
   const { title, images, price } = itemData;
 

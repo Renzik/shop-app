@@ -1,20 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements';
 
 import ShopItem from '../../components/ShopItem';
 
-const UserProducts = () => {
+const UserProducts = ({ navigation }) => {
   const userProducts = useSelector(({ products: { userProducts } }) => userProducts);
 
   return (
     <FlatList
       numColumns={2}
+      style={{ padding: 15 }}
       data={userProducts}
       keyExtractor={item => item.id}
-      renderItem={item => <ShopItem itemData={item.item} />}
+      renderItem={item => (
+        <ShopItem itemData={item.item} onSelect={() => navigation.navigate('EditProduct')} />
+      )}
     />
   );
 };

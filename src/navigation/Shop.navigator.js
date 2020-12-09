@@ -18,6 +18,7 @@ import OrdersFilters from '../screens/orders/OrdersFilter.screen';
 import OrdersFilterResults from '../screens/orders/OrdersFilterResults.screen';
 import UserMenu from '../screens/user/UserMenu.screen';
 import UserProducts from '../screens/user/UserProducts.screen';
+import EditProduct from '../screens/user/EditProduct.screen';
 
 const defaultOptions = {
   headerStyle: {
@@ -116,8 +117,11 @@ const UserMenuNavigator = createStackNavigator(
     UserProducts: {
       screen: UserProducts,
       navigationOptions: {
-        headerTitle: ({ style }) => <Text style={{ fontSize: 18 }}>Your Products</Text>,
+        headerTitle: () => <Text style={{ fontSize: 18 }}>Your Products</Text>,
       },
+    },
+    EditProduct: {
+      screen: EditProduct,
     },
     SearchResults: {
       screen: SearchResults,

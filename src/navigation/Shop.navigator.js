@@ -4,13 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import {
-  Ionicons,
-  MaterialIcons,
-  AntDesign,
-  SimpleLineIcons,
-  FontAwesome,
-} from '@expo/vector-icons';
+import { Feather, AntDesign, SimpleLineIcons, FontAwesome } from '@expo/vector-icons';
 
 import Theme from '../../constants/Theme';
 
@@ -22,6 +16,7 @@ import Orders from '../screens/orders/Orders.screen';
 import User from '../screens/user/User.screen';
 import OrdersFilters from '../screens/orders/OrdersFilter.screen';
 import OrdersFilterResults from '../screens/orders/OrdersFilterResults.screen';
+import UserMenu from '../screens/user/UserMenu.screen';
 
 const defaultOptions = {
   headerStyle: {
@@ -99,6 +94,24 @@ const UserNavigator = createStackNavigator(
   { defaultNavigationOptions: defaultOptions }
 );
 
+const UserMenuNavigator = createStackNavigator(
+  {
+    UserMenu: {
+      screen: UserMenu,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
+    },
+    SearchResults: {
+      screen: SearchResults,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
+    },
+  },
+  { defaultNavigationOptions: defaultOptions }
+);
+
 const tabScreenConfig = {
   Products: {
     screen: ProductsNavigator,
@@ -120,8 +133,14 @@ const tabScreenConfig = {
     screen: CartNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return <AntDesign name='shoppingcart' size={27} color={tabInfo.tintColor} />;
+        return <AntDesign name='shoppingcart' size={26.5} color={tabInfo.tintColor} />;
       },
+    },
+  },
+  UserMenu: {
+    screen: UserMenuNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => <Feather name='menu' size={25} color={tabInfo.tintColor} />,
     },
   },
 };

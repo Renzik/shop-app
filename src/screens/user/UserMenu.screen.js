@@ -4,8 +4,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import SearchBar from '../../components/SearchBar';
 
 const UserMenu = ({ navigation }) => {
-  const [color, setColor] = useState('#222');
-
   const navigateTo = routeName =>
     navigation.navigate({
       routeName: `${routeName}`,
@@ -14,17 +12,21 @@ const UserMenu = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
       <Pressable
-        onPressIn={() => setColor('#FF9E00')}
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#FF9E00' : '#222', ...styles.menuItem }}>
+            Your Orders
+          </Text>
+        )}
         onPress={() => navigateTo('Orders')}
-        onPressOut={() => setColor('#222')}>
-        <Text style={{ ...styles.menuItem, color: color || '#222' }}>Your Orders</Text>
-      </Pressable>
+      />
+
       <Pressable
-        onPressIn={() => setColor('#FF9E00')}
-        onPress={() => navigateTo('UserProducts')}
-        onPressOut={() => setColor('#222')}>
-        <Text style={{ ...styles.menuItem, color: color }}>Your Products</Text>
-      </Pressable>
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#FF9E00' : '#222', ...styles.menuItem }}>
+            Your Products
+          </Text>
+        )}
+        onPress={() => navigateTo('UserProducts')}></Pressable>
     </ScrollView>
   );
 };
@@ -39,7 +41,6 @@ UserMenu.navigationOptions = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: '15%',
     paddingTop: 15,
     backgroundColor: '#fff',
   },
@@ -47,14 +48,8 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins-regular',
     fontSize: 22,
     paddingVertical: 15,
-    // color: '#222',
+    paddingHorizontal: '15%',
   },
-  // menuItemClicked: {
-  //   color:  ,
-  //   fontFamily: 'poppins-regular',
-  //   fontSize: 22,
-  //   paddingVertical: 15,
-  // },
 });
 
 export default UserMenu;

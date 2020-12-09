@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -115,6 +115,9 @@ const UserMenuNavigator = createStackNavigator(
     OrdersFilterResults: OrdersFilterResults,
     UserProducts: {
       screen: UserProducts,
+      navigationOptions: {
+        headerTitle: ({ style }) => <Text style={{ fontSize: 18 }}>Your Products</Text>,
+      },
     },
     SearchResults: {
       screen: SearchResults,

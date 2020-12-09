@@ -17,6 +17,7 @@ import User from '../screens/user/User.screen';
 import OrdersFilters from '../screens/orders/OrdersFilter.screen';
 import OrdersFilterResults from '../screens/orders/OrdersFilterResults.screen';
 import UserMenu from '../screens/user/UserMenu.screen';
+import UserProducts from '../screens/user/UserProducts.screen';
 
 const defaultOptions = {
   headerStyle: {
@@ -101,6 +102,19 @@ const UserMenuNavigator = createStackNavigator(
       navigationOptions: {
         safeAreaInsets: { bottom: 0, top: 23 },
       },
+    },
+    Orders: {
+      screen: Orders,
+      navigationOptions: {
+        safeAreaInsets: { bottom: 0, top: 23 },
+      },
+    },
+    OrdersFilters: {
+      screen: OrdersFilters,
+    },
+    OrdersFilterResults: OrdersFilterResults,
+    UserProducts: {
+      screen: UserProducts,
     },
     SearchResults: {
       screen: SearchResults,

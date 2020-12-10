@@ -3,6 +3,6 @@ export const productActions = {
 };
 
 export const deleteUserItem = id => ({
-  type: productsAction.DELETE_USER_ITEM,
+  type: productActions.DELETE_USER_ITEM,
   payload: id,
 });

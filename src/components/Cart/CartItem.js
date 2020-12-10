@@ -5,11 +5,14 @@ import { useDispatch } from 'react-redux';
 import CustomButton from '../ProductDetail/CustomButton';
 
 import { deleteItem } from '../../redux/actions/cart.actions';
+import { deleteUserItem } from '../../redux/actions/products.actions';
 
-const CartItem = ({ item, onSelect, children }) => {
+const CartItem = ({ item, onSelect, children, reducerNotice }) => {
   const dispatch = useDispatch();
 
-  console.log(item);
+  const deleteCartOrUserProduct = () => {
+    reducerNotice === 'cart' ? dispatch(deleteItem(item.id)) : dispatch(deleteUserItem(item.id));
+  };
 
   return (
     <TouchableOpacity style={styles.touchableContainer} onPress={onSelect}>
@@ -30,14 +33,14 @@ const CartItem = ({ item, onSelect, children }) => {
       </View>
       <View style={styles.actionsContainer}>
         {children}
-        <View>
-          <CustomButton
-            onPress={() => dispatch(deleteItem(item.id))}
-            textStyles={styles.deleteButtonTextStyles}
-            style={styles.deleteButton}>
-            Delete
-          </CustomButton>
-        </View>
+        {/* <View> */}
+        <CustomButton
+          onPress={deleteCartOrUserProduct}
+          textStyles={styles.deleteButtonTextStyles}
+          style={styles.deleteButton}>
+          Delete
+        </CustomButton>
+        {/* </View> */}
       </View>
     </TouchableOpacity>
   );
@@ -82,12 +85,15 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins-bold',
   },
   actionsContainer: {
-    width: '100%',
+    // width: 60,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
   deleteButton: {
     elevation: 0,
+    width: '35%',
+    alignSelf: 'flex-start',
+    marginLeft: 30,
   },
   deleteButtonTextStyles: {
     fontSize: 12,

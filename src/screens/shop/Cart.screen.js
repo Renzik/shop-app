@@ -34,6 +34,7 @@ const Cart = ({ navigation }) => {
   const renderCartItem = ({ item }) => {
     return (
       <CartItem
+        reducerNotice={'cart'}
         item={item}
         onSelect={() => {
           navigation.navigate({

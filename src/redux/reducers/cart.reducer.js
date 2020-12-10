@@ -1,5 +1,6 @@
 import { cartActions } from '../actions/cart.actions';
 import CartItem from '../../models/cart-item';
+import { productActions } from '../actions/products.actions';
 
 const initialState = {
   items: {},
@@ -104,6 +105,21 @@ export default (state = initialState, action) => {
 
     case cartActions.CLEAR_CART:
       return { ...state, items: {}, total: 0 };
+
+    case productActions.DELETE_USER_ITEM:
+      if (!state.items[action.payload]) {
+        return state;
+      }
+      const itemTotal = state.items[action.payload].sum;
+      const updatedItems = { ...state.items };
+      delete updatedItems[action.payload];
+
+      return {
+        ...state,
+        items: updatedItems,
+        total: state.total.toFixed(2) - itemTotal,
+      };
+
     default:
       return state;
   }

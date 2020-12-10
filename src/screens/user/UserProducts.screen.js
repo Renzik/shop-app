@@ -11,15 +11,19 @@ import CustomButton from '../../components/ProductDetail/CustomButton';
 const UserProducts = ({ navigation }) => {
   const userProducts = useSelector(({ products: { userProducts } }) => userProducts);
 
+  const editHandler = id => {
+    navigation.navigate('EditProduct', { itemId: id });
+  };
+
   return (
     <FlatList
       style={{ marginBottom: 10 }}
       data={userProducts}
       keyExtractor={item => item.id}
       renderItem={item => (
-        <CartItem item={item.item} onSelect={() => navigation.navigate('EditProduct')}>
+        <CartItem item={item.item} onSelect={() => editHandler(item.item.id)}>
           <CustomButton
-            onPress={() => {}}
+            onPress={() => editHandler(item.item.id)}
             textStyles={styles.deleteButtonTextStyles}
             style={styles.deleteButton}>
             Edit

@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins-bold',
   },
   actionsContainer: {
-    // width: 60,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
     elevation: 0,
     width: '35%',
     alignSelf: 'flex-start',
-    marginLeft: 30,
+    marginLeft: 15,
   },
   deleteButtonTextStyles: {
     fontSize: 12,

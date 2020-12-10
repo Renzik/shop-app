@@ -140,6 +140,7 @@ const tabScreenConfig = {
       tabBarIcon: tabInfo => {
         return <SimpleLineIcons name='home' size={23} color={tabInfo.tintColor} />;
       },
+      // tabBarOnPress: ({ navigation }) => navigation.navigate('ProductsOverview'),
     },
   },
   UserOptions: {
@@ -162,6 +163,7 @@ const tabScreenConfig = {
     screen: UserMenuNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => <Feather name='menu' size={25} color={tabInfo.tintColor} />,
+      // tabBarOnPress: ({ navigation }) => goBack(navigation),
     },
   },
 };

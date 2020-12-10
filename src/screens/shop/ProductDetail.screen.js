@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { SliderBox } from 'react-native-image-slider-box';
@@ -22,6 +22,13 @@ const ProductDetail = ({ navigation }) => {
   const item = useSelector(state =>
     state.products.availableProducts.find(item => item.id === itemId)
   );
+
+  if (item === undefined)
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>The item has been deleted by the owner</Text>
+      </View>
+    );
 
   const dispatch = useDispatch();
 
@@ -156,6 +163,17 @@ const styles = StyleSheet.create({
   },
   description: {
     marginVertical: 10,
+    fontFamily: 'poppins-regular',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+  },
+  text: {
+    color: '#666',
+    fontSize: 15,
     fontFamily: 'poppins-regular',
   },
 });

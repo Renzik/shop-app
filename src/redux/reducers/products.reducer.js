@@ -10,9 +10,12 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case productActions.DELETE_USER_ITEM:
       const itemId = action.payload;
-      const filteredItems = [...state.userProducts].filter(item => item.id !== itemId);
 
-      return { ...state, userProducts: filteredItems };
+      return {
+        ...state,
+        userProducts: state.userProducts.filter(item => item.id !== itemId),
+        availableProducts: state.availableProducts.filter(item => item.id !== itemId),
+      };
 
     default:
       return state;

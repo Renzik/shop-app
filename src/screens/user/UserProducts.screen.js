@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements';
+import { AntDesign } from '@expo/vector-icons';
 
 import ShopItem from '../../components/ShopItem';
 import CartItem from '../../components/Cart/CartItem';
@@ -46,6 +47,14 @@ UserProducts.navigationOptions = ({ navigation }) => {
       />
     ),
     headerTitle: 'Your Products',
+    headerRight: () => (
+      <AntDesign
+        style={{ marginRight: 15 }}
+        name='plus'
+        size={23}
+        onPress={() => navigation.navigate('EditProduct')}
+      />
+    ),
   };
 };
 

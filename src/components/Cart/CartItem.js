@@ -33,14 +33,12 @@ const CartItem = ({ item, onSelect, children, reducerNotice }) => {
       </View>
       <View style={styles.actionsContainer}>
         {children}
-        {/* <View> */}
         <CustomButton
           onPress={deleteCartOrUserProduct}
           textStyles={styles.deleteButtonTextStyles}
           style={styles.deleteButton}>
           Delete
         </CustomButton>
-        {/* </View> */}
       </View>
     </TouchableOpacity>
   );

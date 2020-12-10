@@ -1,29 +1,15 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TouchableNativeFeedback,
-  Platform,
-  Image,
-  Dimensions,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import CustomButton from '../ProductDetail/CustomButton';
-import CartQtyButton from '../UI/CartQtyButton';
 
 import { deleteItem } from '../../redux/actions/cart.actions';
 
-const CartItem = ({ item, onSelect }) => {
-  // let TouchableComponent = TouchableOpacity;
-
-  // Platform.OS === 'android' && Platform.Version >= 21
-  //   ? (TouchableComponent = TouchableNativeFeedback)
-  //   : null;
-
+const CartItem = ({ item, onSelect, children }) => {
   const dispatch = useDispatch();
+
+  console.log(item);
 
   return (
     <TouchableOpacity style={styles.touchableContainer} onPress={onSelect}>
@@ -43,7 +29,7 @@ const CartItem = ({ item, onSelect }) => {
         </View>
       </View>
       <View style={styles.actionsContainer}>
-        <CartQtyButton quantity={item.quantity} itemId={item.id} />
+        {children}
         <View>
           <CustomButton
             onPress={() => dispatch(deleteItem(item.id))}

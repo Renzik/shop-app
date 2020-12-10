@@ -88,9 +88,6 @@ export default (state = initialState, action) => {
       const product = itemsCopy[itemId];
 
       delete itemsCopy[itemId];
-
-      console.log(product);
-      console.log(state.total);
       // const remakeState = () => {
       //   const newStateItems = { items: {}, total: 0 };
       //   for (const key in state.items) {

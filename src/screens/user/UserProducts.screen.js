@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements';
 
 import ShopItem from '../../components/ShopItem';
+import CartItem from '../../components/Cart/CartItem';
 
 const UserProducts = ({ navigation }) => {
   const userProducts = useSelector(({ products: { userProducts } }) => userProducts);
@@ -16,7 +17,9 @@ const UserProducts = ({ navigation }) => {
       data={userProducts}
       keyExtractor={item => item.id}
       renderItem={item => (
-        <ShopItem itemData={item.item} onSelect={() => navigation.navigate('EditProduct')} />
+        <CartItem item={item.item} onSelect={() => navigation.navigate('EditProduct')}>
+          <Button title='Edit' />
+        </CartItem>
       )}
     />
   );

@@ -8,6 +8,7 @@ import CustomButton from '../../components/ProductDetail/CustomButton';
 import { checkout } from '../../redux/actions/orders.actions';
 import { clearCart } from '../../redux/actions/cart.actions';
 import CartItem from '../../components/Cart/CartItem';
+import CartQtyButton from '../../components/UI/CartQtyButton';
 
 const Cart = ({ navigation }) => {
   let amountOfItems = 0;
@@ -39,15 +40,16 @@ const Cart = ({ navigation }) => {
             routeName: 'ProductDetail',
             params: { itemId: item.id, itemName: item.title },
           });
-        }}
-      />
+        }}>
+        <CartQtyButton quantity={item.quantity} itemId={item.id} />
+      </CartItem>
     );
   };
 
   const itemOrItems = amountOfItems === 1 ? 'item' : 'items';
   const dispatch = useDispatch();
 
-  const dispatchAndClearCart = () => {
+  const ClearAndCheckout = () => {
     dispatch(clearCart());
     dispatch(checkout(cartItems, cartTotal));
   };
@@ -64,7 +66,7 @@ const Cart = ({ navigation }) => {
                   Subtotal ({amountOfItems} {itemOrItems}):
                   <Text style={styles.cartSubtotal}> ${cartTotal}</Text>
                 </Text>
-                <CustomButton onPress={dispatchAndClearCart} style={styles.checkoutButton}>
+                <CustomButton onPress={ClearAndCheckout} style={styles.checkoutButton}>
                   Checkout Cart
                 </CustomButton>
               </View>

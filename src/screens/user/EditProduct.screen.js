@@ -19,8 +19,22 @@ EditProduct.navigationOptions = ({ navigation }) => ({
       onPress={() => navigation.goBack()}
     />
   ),
+  headerTitle: () =>
+    navigation.getParam('itemId') ? (
+      <Text style={styles.headerTitle}>Edit Product</Text>
+    ) : (
+      <Text style={styles.headerTitle}>Add New Product</Text>
+    ),
+  headerRight: () => (
+    <AntDesign style={{ marginRight: 15 }} name='check' size={25} onPress={() => {}} />
+  ),
 });
 
 export default EditProduct;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  headerTitle: {
+    fontFamily: 'poppins-regular',
+    fontSize: 18,
+  },
+});

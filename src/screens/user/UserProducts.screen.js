@@ -46,12 +46,12 @@ UserProducts.navigationOptions = ({ navigation }) => {
         }}
       />
     ),
-    headerTitle: 'Your Products',
+    headerTitle: () => <Text style={{ fontSize: 18 }}>Your Products</Text>,
     headerRight: () => (
       <AntDesign
         style={{ marginRight: 15 }}
         name='plus'
-        size={23}
+        size={25}
         onPress={() => navigation.navigate('EditProduct')}
       />
     ),

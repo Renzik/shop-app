@@ -116,9 +116,9 @@ const UserMenuNavigator = createStackNavigator(
     OrdersFilterResults: OrdersFilterResults,
     UserProducts: {
       screen: UserProducts,
-      navigationOptions: {
-        headerTitle: () => <Text style={{ fontSize: 18 }}>Your Products</Text>,
-      },
+      // navigationOptions: {
+      //   headerTitle: () => <Text style={{ fontSize: 18 }}>Your Products</Text>,
+      // },
     },
     EditProduct: {
       screen: EditProduct,

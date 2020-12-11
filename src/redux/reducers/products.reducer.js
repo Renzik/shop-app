@@ -1,5 +1,6 @@
 import PRODUCTS from '../../data/dummyData';
 import { productActions } from '../actions/products.actions';
+import Product from '../../models/product';
 
 const initialState = {
   availableProducts: PRODUCTS,
@@ -15,6 +16,24 @@ export default (state = initialState, action) => {
         ...state,
         userProducts: state.userProducts.filter(item => item.id !== itemId),
         availableProducts: state.availableProducts.filter(item => item.id !== itemId),
+      };
+
+    case productActions.ADD_NEW_PRODUCT:
+      const productToAdd = action.payload;
+      console.log(action.payload, 'reducer');
+      const newProduct = new Product(
+        new Date().toString(),
+        'u1',
+        productToAdd.title,
+        productToAdd.images,
+        productToAdd.description,
+        +productToAdd.price
+      );
+
+      return {
+        ...state,
+        availableProducts: [...state.availableProducts, newProduct],
+        userProducts: [...state.userProducts, newProduct],
       };
 
     default:

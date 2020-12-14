@@ -16,9 +16,8 @@ export const addNewProduct = (title, imageUrl, description, price) => {
   console.log(price);
   return {
     type: productActions.ADD_NEW_PRODUCT,
-    payload: '',
+    payload: { images: [imageUrl], title: title, description: description, price: price },
   };
-  // { images: [imageUrl], title: title, description: description, price: price }
 };
 
 export const editProduct = id => ({

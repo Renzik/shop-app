@@ -13,7 +13,7 @@ const EditProduct = ({ navigation }) => {
     products.userProducts.find(item => item.id === itemId)
   );
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
-  const [imageUrl, setImageUrl] = useState(editedProduct ? editedProduct.images[0] : '');
+  const [imageUrl, setImageUrl] = useState(editedProduct ? editedProduct.images[0] : 'url');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 

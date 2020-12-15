@@ -10,10 +10,6 @@ export const deleteUserItem = id => ({
 });
 
 export const addNewProduct = (title, imageUrl, description, price) => {
-  console.log(title);
-  console.log(imageUrl);
-  console.log(description);
-  console.log(price);
   return {
     type: productActions.ADD_NEW_PRODUCT,
     payload: { images: [imageUrl], title: title, description: description, price: price },

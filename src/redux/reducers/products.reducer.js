@@ -20,14 +20,14 @@ export default (state = initialState, action) => {
 
     case productActions.ADD_NEW_PRODUCT:
       const productToAdd = action.payload;
-      console.log(action.payload, 'reducer');
+      // console.log(action.payload, 'reducer');
       const newProduct = new Product(
         new Date().toString(),
         'u1',
         productToAdd.title,
         productToAdd.images,
         productToAdd.description,
-        +productToAdd.price
+        productToAdd.price
       );
 
       return {

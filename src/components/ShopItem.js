@@ -19,8 +19,6 @@ const ShopItem = ({ itemData, onSelect }) => {
     ? (TouchableComponent = TouchableNativeFeedback)
     : null;
 
-  // console.log(itemData);
-
   return (
     <TouchableComponent style={styles.touchableContainer} onPress={onSelect}>
       <View style={styles.gridContainer}>

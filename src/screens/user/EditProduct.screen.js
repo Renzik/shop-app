@@ -23,9 +23,10 @@ const EditProduct = ({ navigation }) => {
 
   const submitHandler = useCallback(() => {
     editedProduct
-      ? dispatch(editProduct(itemId))
+      ? dispatch(editProduct(itemId, title, imageUrl, description))
       : dispatch(addNewProduct(title, imageUrl, description, +price));
-  }, [dispatch, itemId, imageUrl, description, price]);
+    navigation.goBack();
+  }, [dispatch, title, itemId, imageUrl, description, price]);
 
   useEffect(() => {
     navigation.setParams({ submit: submitHandler });
@@ -84,15 +85,7 @@ EditProduct.navigationOptions = ({ navigation }) => {
         <Text style={styles.headerTitle}>Add New Product</Text>
       ),
     headerRight: () => (
-      <AntDesign
-        style={{ marginRight: 15 }}
-        name='check'
-        size={25}
-        onPress={() => {
-          submitFn();
-          navigation.goBack();
-        }}
-      />
+      <AntDesign style={{ marginRight: 15 }} name='check' size={25} onPress={submitFn} />
     ),
   };
 };

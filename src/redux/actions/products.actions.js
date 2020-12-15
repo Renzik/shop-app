@@ -16,7 +16,7 @@ export const addNewProduct = (title, imageUrl, description, price) => {
   };
 };
 
-export const editProduct = id => ({
+export const editProduct = (id, title, imageUrl, description) => ({
   type: productActions.EDIT_PRODUCT,
-  payload: id,
+  payload: { id, title, imageUrl, description },
 });

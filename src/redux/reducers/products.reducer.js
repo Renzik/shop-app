@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
 
     case productActions.ADD_NEW_PRODUCT:
       const productToAdd = action.payload;
-      // console.log(action.payload, 'reducer');
+
       const newProduct = new Product(
         new Date().toString(),
         'u1',
@@ -34,6 +34,30 @@ export default (state = initialState, action) => {
         ...state,
         availableProducts: [...state.availableProducts, newProduct],
         userProducts: [...state.userProducts, newProduct],
+      };
+
+    case productActions.EDIT_PRODUCT:
+      const productToEdit = state.userProducts.find(item => item.id === action.payload.id);
+      const { title, imageUrl, description } = action.payload;
+      const newItem = new Product(
+        productToEdit.id,
+        productToEdit.ownerId,
+        title,
+        [imageUrl, ...productToEdit.images.slice(1)],
+        description,
+        productToEdit.price
+      );
+
+      return {
+        ...state,
+        userProducts: [
+          newItem,
+          ...state.userProducts.filter(item => item.id !== action.payload.id),
+        ],
+        availableProducts: [
+          newItem,
+          ...state.availableProducts.filter(item => item.id !== action.payload.id),
+        ],
       };
 
     default:

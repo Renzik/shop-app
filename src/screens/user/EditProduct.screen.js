@@ -60,6 +60,7 @@ const EditProduct = ({ navigation }) => {
     },
     formIsValid: editedProduct ? true : false,
   });
+  // console.log(formState.inputValues.imageUrl);
 
   const submitHandler = useCallback(() => {
     if (!formState.formIsValid) {
@@ -123,9 +124,10 @@ const EditProduct = ({ navigation }) => {
           autoCorrect
           required
           onInputChange={inputChangeHandler}
-          initialValue={editedProduct ? editedProduct.imageUrl : ''}
+          initialValue={editedProduct ? editedProduct.images[0] : ''}
           initiallyValid={!!editedProduct}
         />
+        {console.log(editedProduct)}
         {editedProduct ? null : (
           <Input
             label='Price'

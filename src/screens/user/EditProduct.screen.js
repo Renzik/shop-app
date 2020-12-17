@@ -46,7 +46,7 @@ const EditProduct = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const [formState, dispatchFormState] = useReducer(logger(formReducer), {
+  const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       title: editedProduct ? editedProduct.title : '',
       imageUrl: editedProduct ? editedProduct.images[0] : '',
@@ -108,6 +108,7 @@ const EditProduct = ({ navigation }) => {
       <ScrollView>
         <View style={styles.form}>
           <Input
+            inputId='title'
             label='Title'
             errorText='Please enter a valid title.'
             keyboardType='default'
@@ -120,6 +121,7 @@ const EditProduct = ({ navigation }) => {
           />
 
           <Input
+            inputId='imageUrl'
             label='Image URL'
             errorText='Please enter a valid image url.'
             keyboardType='default'
@@ -132,6 +134,7 @@ const EditProduct = ({ navigation }) => {
 
           {editedProduct ? null : (
             <Input
+              inputId='price'
               label='Price'
               errorText='Please enter a price greater than 0'
               keyboardType='decimal-pad'
@@ -141,6 +144,7 @@ const EditProduct = ({ navigation }) => {
             />
           )}
           <Input
+            inputId='description'
             label='Description'
             errorText='Please enter a valid description.'
             keyboardType='default'

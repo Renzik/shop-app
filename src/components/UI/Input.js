@@ -24,9 +24,9 @@ const inputReducer = (state, action) => {
 };
 
 const Input = props => {
-  const { onInputChange, label } = props;
+  const { onInputChange, inputId } = props;
 
-  const [inputState, dispatch] = useReducer(logger(inputReducer), {
+  const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue ? props.initialValue : '',
     isValid: props.initiallyValid,
     touched: false,
@@ -34,8 +34,8 @@ const Input = props => {
 
   useEffect(() => {
     if (inputState.touched || inputState.isValid)
-      onInputChange(label.toLowerCase(), inputState.value, inputState.isValid);
-  }, [inputState, onInputChange, label]);
+      onInputChange(inputId, inputState.value, inputState.isValid);
+  }, [inputState, onInputChange, inputId]);
 
   const textChangeHandler = text => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

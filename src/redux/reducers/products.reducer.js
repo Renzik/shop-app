@@ -37,28 +37,29 @@ export default (state = initialState, action) => {
       };
 
     case productActions.EDIT_PRODUCT:
-      console.log(action.payload);
-      const productToEdit = state.userProducts.find(item => item.id === action.payload.id);
+      const productIdx = state.userProducts.findIndex(item => item.id === action.payload.id);
+      // find the index
       const { title, imageUrl, description } = action.payload;
+      // get new values when editing
       const newItem = new Product(
-        productToEdit.id,
-        productToEdit.ownerId,
+        state.userProducts[productIdx].id,
+        state.userProducts[productIdx].ownerId,
         title,
-        [imageUrl, ...productToEdit.images.slice(1)],
+        [imageUrl, ...state.userProducts[productIdx].images.slice(1)],
         description,
-        productToEdit.price
+        state.userProducts[productIdx].price
       );
+      // create new item with new values
+      const replaceItem = arr => {
+        // pure func to edit item and keep it on the same index
+        arr.splice(productIdx, 1, newItem);
+        return arr;
+      };
 
       return {
         ...state,
-        userProducts: [
-          newItem,
-          ...state.userProducts.filter(item => item.id !== action.payload.id),
-        ],
-        availableProducts: [
-          newItem,
-          ...state.availableProducts.filter(item => item.id !== action.payload.id),
-        ],
+        userProducts: [...replaceItem(state.userProducts)],
+        availableProducts: [...replaceItem(state.availableProducts)],
       };
 
     default:

@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dimensions } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ItemList from '../../components/ItemList';
 import SearchBar from '../../components/SearchBar';
+import { fetchProducts } from '../../redux/actions/products.actions';
 
 const ProductsOverview = ({ navigation }) => {
   const products = useSelector(state => state.products.availableProducts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return <ItemList itemData={products} navigation={navigation} />;
 };

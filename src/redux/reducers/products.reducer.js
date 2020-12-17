@@ -9,20 +9,18 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case productActions.DELETE_USER_ITEM:
-      const itemId = action.payload;
-
+    case productActions.SET_PRODUCTS:
       return {
         ...state,
-        userProducts: state.userProducts.filter(item => item.id !== itemId),
-        availableProducts: state.availableProducts.filter(item => item.id !== itemId),
+        availableProducts: [...state.availableProducts, ...action.products],
+        userProducts: action.products.filter(product => product.ownerId === 'u1'),
       };
 
     case productActions.ADD_NEW_PRODUCT:
       const productToAdd = action.payload;
 
       const newProduct = new Product(
-        new Date().toString(),
+        productToAdd.id,
         'u1',
         productToAdd.title,
         productToAdd.images,
@@ -34,6 +32,15 @@ export default (state = initialState, action) => {
         ...state,
         availableProducts: [...state.availableProducts, newProduct],
         userProducts: [...state.userProducts, newProduct],
+      };
+
+    case productActions.DELETE_USER_ITEM:
+      const itemId = action.payload;
+
+      return {
+        ...state,
+        userProducts: state.userProducts.filter(item => item.id !== itemId),
+        availableProducts: state.availableProducts.filter(item => item.id !== itemId),
       };
 
     case productActions.EDIT_PRODUCT:

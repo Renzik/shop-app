@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import logger from 'use-reducer-logger';
 
 const inputActions = {
   INPUT_CHANGE: 'INPUT_CHANGE',
@@ -24,20 +25,21 @@ const inputReducer = (state, action) => {
 
 const Input = props => {
   const { onInputChange, label } = props;
-  const [inputState, dispatch] = useReducer(inputReducer, {
+
+  const [inputState, dispatch] = useReducer(logger(inputReducer), {
     value: props.initialValue ? props.initialValue : '',
     isValid: props.initiallyValid,
     touched: false,
   });
 
   useEffect(() => {
-    if (inputState.touched)
+    if (inputState.touched || inputState.isValid)
       onInputChange(label.toLowerCase(), inputState.value, inputState.isValid);
   }, [inputState, onInputChange, label]);
 
   const textChangeHandler = text => {
-    console.log(text);
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     let isValid = true;
 
     if (props.required && text.trim().length === 0) isValid = false;

@@ -37,6 +37,7 @@ export default (state = initialState, action) => {
       };
 
     case productActions.EDIT_PRODUCT:
+      console.log(action.payload);
       const productToEdit = state.userProducts.find(item => item.id === action.payload.id);
       const { title, imageUrl, description } = action.payload;
       const newItem = new Product(
